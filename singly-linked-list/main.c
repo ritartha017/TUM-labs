@@ -6,31 +6,31 @@ typedef struct s_list t_list;
 
 struct s_list{
     int id;
-    char *name;
-    t_list *next;
+    char* name;
+    t_list* next;
 };
 
 void print(t_list *list);
 
-void push_front(t_list **list, int set_id, char* set_name);
-void push_back(t_list **list, int set_id, char* set_name);
-void push_middle(t_list *list, int set_id, char* set_name, unsigned n);
+void push_front(t_list** list, int set_id, char* set_name);
+void push_back(t_list** list, int set_id, char* set_name);
+void push_middle(t_list* list, int set_id, char* set_name, unsigned n);
 
-void delete_front(t_list **list);
-void delete_back(t_list **list);
-void delete_middle(t_list **list, unsigned n);
+void delete_front(t_list** list);
+void delete_back(t_list** list);
+void delete_middle(t_list* list, unsigned n);
 
-void reverse_list(t_list **list);
-void sort_id(t_list **list);
+void reverse_list(t_list** list);
+void sort_id(t_list** list);
 
-t_list* create_node(int set_id, char *set_name);
+t_list* create_node(int set_id, char* set_name);
 t_list* get_index(t_list* list, unsigned n);
 
-int swap(t_list **list, int pos1, int pos2);
-int count(t_list *list);
+int swap(t_list** list, int pos1, int pos2);
+int count(t_list* list);
 
 int main(){
-    t_list *list = create_node(0, "Name0");
+    t_list* list = create_node(0, "Name0");
     if(list == NULL) { printf("Memory alloc"); return 1;}
 
     push_front(&list, 3, "Name3");
@@ -44,7 +44,7 @@ int main(){
     push_back(&list, 6, "Name6");
 
     delete_front(&list);
-    delete_middle(&list, 2);
+    delete_middle(list, 2);
     delete_back(&list);
     print(list);
 
@@ -59,37 +59,37 @@ int main(){
         printf("Invalid position, please enter position greater than 0 and less than nodes in list.\n");
     }
 
-   // search_id(list, 4);
+    // search_id(list, 4);
     sort_id(&list);
     reverse_list(&list);
     print(list);
 }
 
-t_list* create_node(int set_id, char *set_name){
-    t_list *node = (t_list*)malloc(sizeof(t_list));
+t_list* create_node(int set_id, char* set_name){
+    t_list* node = (t_list*)malloc(sizeof(t_list));
     node -> id = set_id;
     node -> name = set_name;
     node -> next = NULL;
     return node;
 }
 
-void push_front(t_list **list, int set_id, char* set_name){
-    t_list *new_element = create_node(set_id, set_name);
+void push_front(t_list** list, int set_id, char* set_name){
+    t_list* new_element = create_node(set_id, set_name);
 
     new_element -> next = *list;
     *list = new_element;
 }
 
-void push_back(t_list **list, int set_id, char* set_name){
-    t_list *new_element = create_node(set_id, set_name);
+void push_back(t_list** list, int set_id, char* set_name){
+    t_list* new_element = create_node(set_id, set_name);
 
-    t_list *tmp = *list;
+    t_list* tmp = *list;
     while(tmp -> next != NULL) tmp = tmp -> next;
     tmp -> next = new_element;
 }
 
-void push_middle(t_list *list, int set_id, char* set_name, unsigned n) {
-    t_list *tmp = NULL;
+void push_middle(t_list* list, int set_id, char* set_name, unsigned n) {
+    t_list* tmp = NULL;
     list = get_index(list, --n);
     tmp = create_node(set_id, set_name);
     if(list -> next){
@@ -100,20 +100,20 @@ void push_middle(t_list *list, int set_id, char* set_name, unsigned n) {
     list->next = tmp;
 }
 
-void delete_front(t_list **list){
+void delete_front(t_list** list){
     if(*list == NULL){return;}
     t_list *to_delete = *list;
     *list = to_delete -> next;
     free(to_delete);
 }
 
-void delete_back(t_list **list){
+void delete_back(t_list** list){
     //if there is only one item in the list, remove it
     if( (*list)-> next == NULL){
         free(list); return;
     }
 
-    t_list *tmp = *list;
+    t_list* tmp = *list;
     while(tmp -> next -> next != NULL) {
         tmp = tmp -> next;
     }
@@ -121,15 +121,15 @@ void delete_back(t_list **list){
     tmp -> next = NULL;
 }
 
-void delete_middle(t_list **list, unsigned n){
-    t_list *prev = get_index(*list, n);
-    t_list *elem = prev -> next;
+void delete_middle(t_list* list, unsigned n){
+    t_list* prev = get_index(list, n);
+    t_list* elem = prev -> next;
     prev-> next = elem -> next;
     free(elem);
 }
 
-int swap(t_list **list, int pos1, int pos2){
-    t_list *node1, *node2, *prev1, *prev2, *temp;
+int swap(t_list** list, int pos1, int pos2){
+    t_list* node1, *node2, *prev1, *prev2, *temp;
     int max_pos = (pos1 > pos2) ? pos1 : pos2;
     int total_nodes = count(*list);
 
@@ -176,7 +176,7 @@ int swap(t_list **list, int pos1, int pos2){
     return 0;
 }
 
-int count(t_list *list){
+int count(t_list* list){
     int nodes = 0;
     while (list != NULL){
         nodes++;
@@ -185,12 +185,12 @@ int count(t_list *list){
     return nodes;
 }
 
-void reverse_list(t_list **list){
-    t_list *last = NULL;
-    t_list *head = *list;
-    t_list *next;
+void reverse_list(t_list** list){
+    t_list* last = NULL;
+    t_list* head = *list;
+    t_list* next;
 
-    while( head != NULL){
+    while(head != NULL){
         next = head->next;
         head ->next = last;
         last = head;
@@ -199,10 +199,10 @@ void reverse_list(t_list **list){
     *list = last;
 }
 
-void sort_id(t_list **list){
+void sort_id(t_list** list){
     int index1, index2;
     const int max = count(*list);
-    t_list *tmp;
+    t_list* tmp;
     bool sort;
     do {
         sort = true;
@@ -227,8 +227,8 @@ t_list* get_index(t_list* list, unsigned n){
     return list;
 }
 
-void print(t_list *list){
-    t_list *tmp = list;
+void print(t_list* list){
+    t_list* tmp = list;
     while(tmp != NULL){
         printf("id:     %d      name:   %s\n", tmp->id, tmp->name);
         tmp = tmp-> next;
