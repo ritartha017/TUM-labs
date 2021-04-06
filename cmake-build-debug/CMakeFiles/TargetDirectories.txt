@@ -1,0 +1,3 @@
+C:/C/ADTs-c/cmake-build-debug/CMakeFiles/ADTs_c.dir
+C:/C/ADTs-c/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/C/ADTs-c/cmake-build-debug/CMakeFiles/rebuild_cache.dir
