@@ -1,5 +1,5 @@
 //
-// Created by _rbx_ on 06.04.2021.
+// Created by _ritarda_ on 06.04.2021.
 //
 
 #include "bst.h"
