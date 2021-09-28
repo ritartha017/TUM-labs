@@ -50,19 +50,6 @@ def siter(a, eps, nmax)
   { x: x1, k: k, error: error, tf: tf }
 end
 
-# def siter(p1, p2, eps, nmax)
-#     k = 0
-#     x1 = (p1 + p2)/2.0.to_f
-#     x2 = x1 + 0.1*f(x1)
-#     error = (x1 - x2).abs
-#     until ((x1 - x2).abs < eps || k > nmax)
-#         x1 = x2
-#         x2 += 0.1*f(x1)
-#         k += 1
-#     end
-#      { :x => x1, :k => k, :error => error }
-# end
-
 def newton(a, eps, nmax)
   x1 = a
   x0 = k = error = 0
