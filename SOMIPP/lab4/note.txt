@@ -1,0 +1,10 @@
+# grep - searches the given files for lines containing a match
+to a given pattern list. In other words, use the grep
+command to search words or strings in a text files.
+
+# egrep - command treats the meta-characters as they are and do not require to be escaped as is the case with grep
+
+# sed - stream editor used to find and replace strings in bash scripts
+
+# awk - domain-specific language designed for text processing and typically used as a data extraction and reporting tool
+

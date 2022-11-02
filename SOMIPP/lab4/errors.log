@@ -1,0 +1,5 @@
+../root/var/log/file1.txt:ACPI:
+../root/var/log/file1.txt:ACPI:
+../root/var/log/file1.txt:ACPI
+../root/var/log/file2.txt:file2 file2 ACPI fikle
+../root/var/log/file3.txt:ACPI 3
