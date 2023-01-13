@@ -169,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             return GestureDetector(
                                 onTap: () async
                                 => Navigator.of(context).pushNamed('/article_screen',
-                                    arguments: {'article_index':index}),
+                                    arguments: {'article_index':index, 'title': articleList[index].title, 'cover': articleList[index].cover}),
                                 child: Container(
                                     margin: const EdgeInsets.fromLTRB(
                                         16, 0, 16, 12),

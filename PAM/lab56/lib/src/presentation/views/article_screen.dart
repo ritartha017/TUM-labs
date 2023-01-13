@@ -9,7 +9,6 @@ import 'package:lab5/src/data/api_requests.dart';
 
 class ArticleScreen extends StatefulWidget {
   ArticleScreen({Key? key}) : super(key: key);
-  late Future<Article> articleAlbum = fetchArticle(1);
 
   @override
   State<ArticleScreen> createState() => _ArticleScreenState();
@@ -57,11 +56,12 @@ class _ArticleScreenState extends State<ArticleScreen> {
                         margin: const EdgeInsets.fromLTRB(17, 10, 15, 0),
                         child: Stack(children: <Widget>[
                           ClipRRect(
-                            borderRadius: BorderRadius.circular(24),
+                            borderRadius: BorderRadius.circular(20),
                             child: CachedNetworkImage(
-                                imageUrl: featuredList[1].cover!,
+                                imageUrl: data["cover"].toString(),
                                 height: 252,
-                                fit: BoxFit.cover),
+                                width: 358,
+                                fit: BoxFit.fill),
                           ),
                         ])),
                     Expanded(
@@ -77,7 +77,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                                         child: Column(
                                           children: <Widget>[
                                             Text(
-                                              "${(data["article_index"])}s",
+                                              data["title"].toString(),
                                               overflow: TextOverflow.ellipsis,
                                               maxLines: 2,
                                               style: const TextStyle(
@@ -129,7 +129,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                                                       margin: const EdgeInsets
                                                           .fromLTRB(5, 0, 0, 0),
                                                       child: FutureBuilder<Article>(
-                                                        future: fetchArticle(data["article_index"]),
+                                                        future: fetchArticle(data["article_index"] + 1),
                                                         builder: (context, snapshot) {
                                                           if (snapshot.hasData) {
                                                             return Text(
@@ -264,7 +264,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
                                               margin: const EdgeInsets.fromLTRB(
                                                   0, 16, 0, 0),
                                               child: FutureBuilder<Article>(
-                                                future: fetchArticle(1),
+                                                future: fetchArticle(data["article_index"] + 1),
                                                 builder: (context, snapshot) {
                                                   if (snapshot.hasData) {
                                                     return Text(
