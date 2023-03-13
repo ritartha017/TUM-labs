@@ -1,0 +1,15 @@
+C:\uni\TMPS\TMPS_LL1\Accounts\bin\Debug\net7.0\Accounts.exe
+C:\uni\TMPS\TMPS_LL1\Accounts\bin\Debug\net7.0\Accounts.deps.json
+C:\uni\TMPS\TMPS_LL1\Accounts\bin\Debug\net7.0\Accounts.runtimeconfig.json
+C:\uni\TMPS\TMPS_LL1\Accounts\bin\Debug\net7.0\Accounts.dll
+C:\uni\TMPS\TMPS_LL1\Accounts\bin\Debug\net7.0\Accounts.pdb
+C:\uni\TMPS\TMPS_LL1\Accounts\obj\Debug\net7.0\Accounts.csproj.AssemblyReference.cache
+C:\uni\TMPS\TMPS_LL1\Accounts\obj\Debug\net7.0\Accounts.GeneratedMSBuildEditorConfig.editorconfig
+C:\uni\TMPS\TMPS_LL1\Accounts\obj\Debug\net7.0\Accounts.AssemblyInfoInputs.cache
+C:\uni\TMPS\TMPS_LL1\Accounts\obj\Debug\net7.0\Accounts.AssemblyInfo.cs
+C:\uni\TMPS\TMPS_LL1\Accounts\obj\Debug\net7.0\Accounts.csproj.CoreCompileInputs.cache
+C:\uni\TMPS\TMPS_LL1\Accounts\obj\Debug\net7.0\Accounts.dll
+C:\uni\TMPS\TMPS_LL1\Accounts\obj\Debug\net7.0\refint\Accounts.dll
+C:\uni\TMPS\TMPS_LL1\Accounts\obj\Debug\net7.0\Accounts.pdb
+C:\uni\TMPS\TMPS_LL1\Accounts\obj\Debug\net7.0\Accounts.genruntimeconfig.cache
+C:\uni\TMPS\TMPS_LL1\Accounts\obj\Debug\net7.0\ref\Accounts.dll

@@ -1,0 +1,15 @@
+C:\uni\TMPS\TMPS_LL1\SingletonPattern\OS\bin\Debug\net7.0\VPN.exe
+C:\uni\TMPS\TMPS_LL1\SingletonPattern\OS\bin\Debug\net7.0\VPN.deps.json
+C:\uni\TMPS\TMPS_LL1\SingletonPattern\OS\bin\Debug\net7.0\VPN.runtimeconfig.json
+C:\uni\TMPS\TMPS_LL1\SingletonPattern\OS\bin\Debug\net7.0\VPN.dll
+C:\uni\TMPS\TMPS_LL1\SingletonPattern\OS\bin\Debug\net7.0\VPN.pdb
+C:\uni\TMPS\TMPS_LL1\SingletonPattern\OS\obj\Debug\net7.0\VPN.csproj.AssemblyReference.cache
+C:\uni\TMPS\TMPS_LL1\SingletonPattern\OS\obj\Debug\net7.0\VPN.GeneratedMSBuildEditorConfig.editorconfig
+C:\uni\TMPS\TMPS_LL1\SingletonPattern\OS\obj\Debug\net7.0\VPN.AssemblyInfoInputs.cache
+C:\uni\TMPS\TMPS_LL1\SingletonPattern\OS\obj\Debug\net7.0\VPN.AssemblyInfo.cs
+C:\uni\TMPS\TMPS_LL1\SingletonPattern\OS\obj\Debug\net7.0\VPN.csproj.CoreCompileInputs.cache
+C:\uni\TMPS\TMPS_LL1\SingletonPattern\OS\obj\Debug\net7.0\VPN.dll
+C:\uni\TMPS\TMPS_LL1\SingletonPattern\OS\obj\Debug\net7.0\refint\VPN.dll
+C:\uni\TMPS\TMPS_LL1\SingletonPattern\OS\obj\Debug\net7.0\VPN.pdb
+C:\uni\TMPS\TMPS_LL1\SingletonPattern\OS\obj\Debug\net7.0\VPN.genruntimeconfig.cache
+C:\uni\TMPS\TMPS_LL1\SingletonPattern\OS\obj\Debug\net7.0\ref\VPN.dll
