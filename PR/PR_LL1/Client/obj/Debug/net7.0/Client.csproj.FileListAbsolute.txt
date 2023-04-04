@@ -1,0 +1,15 @@
+C:\uni\PR\PR_LL1\Client\bin\Debug\net7.0\Client.exe
+C:\uni\PR\PR_LL1\Client\bin\Debug\net7.0\Client.deps.json
+C:\uni\PR\PR_LL1\Client\bin\Debug\net7.0\Client.runtimeconfig.json
+C:\uni\PR\PR_LL1\Client\bin\Debug\net7.0\Client.dll
+C:\uni\PR\PR_LL1\Client\bin\Debug\net7.0\Client.pdb
+C:\uni\PR\PR_LL1\Client\obj\Debug\net7.0\Client.csproj.AssemblyReference.cache
+C:\uni\PR\PR_LL1\Client\obj\Debug\net7.0\Client.GeneratedMSBuildEditorConfig.editorconfig
+C:\uni\PR\PR_LL1\Client\obj\Debug\net7.0\Client.AssemblyInfoInputs.cache
+C:\uni\PR\PR_LL1\Client\obj\Debug\net7.0\Client.AssemblyInfo.cs
+C:\uni\PR\PR_LL1\Client\obj\Debug\net7.0\Client.csproj.CoreCompileInputs.cache
+C:\uni\PR\PR_LL1\Client\obj\Debug\net7.0\Client.dll
+C:\uni\PR\PR_LL1\Client\obj\Debug\net7.0\refint\Client.dll
+C:\uni\PR\PR_LL1\Client\obj\Debug\net7.0\Client.pdb
+C:\uni\PR\PR_LL1\Client\obj\Debug\net7.0\Client.genruntimeconfig.cache
+C:\uni\PR\PR_LL1\Client\obj\Debug\net7.0\ref\Client.dll

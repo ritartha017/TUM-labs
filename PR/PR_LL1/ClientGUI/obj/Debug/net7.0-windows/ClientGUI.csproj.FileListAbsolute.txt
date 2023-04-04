@@ -1,0 +1,17 @@
+C:\uni\PR\PR_LL1\ClientGUI\bin\Debug\net7.0-windows\ClientGUI.exe
+C:\uni\PR\PR_LL1\ClientGUI\bin\Debug\net7.0-windows\ClientGUI.deps.json
+C:\uni\PR\PR_LL1\ClientGUI\bin\Debug\net7.0-windows\ClientGUI.runtimeconfig.json
+C:\uni\PR\PR_LL1\ClientGUI\bin\Debug\net7.0-windows\ClientGUI.dll
+C:\uni\PR\PR_LL1\ClientGUI\bin\Debug\net7.0-windows\ClientGUI.pdb
+C:\uni\PR\PR_LL1\ClientGUI\obj\Debug\net7.0-windows\ClientGUI.csproj.AssemblyReference.cache
+C:\uni\PR\PR_LL1\ClientGUI\obj\Debug\net7.0-windows\ClientGUI.ClientMainForm.resources
+C:\uni\PR\PR_LL1\ClientGUI\obj\Debug\net7.0-windows\ClientGUI.csproj.GenerateResource.cache
+C:\uni\PR\PR_LL1\ClientGUI\obj\Debug\net7.0-windows\ClientGUI.GeneratedMSBuildEditorConfig.editorconfig
+C:\uni\PR\PR_LL1\ClientGUI\obj\Debug\net7.0-windows\ClientGUI.AssemblyInfoInputs.cache
+C:\uni\PR\PR_LL1\ClientGUI\obj\Debug\net7.0-windows\ClientGUI.AssemblyInfo.cs
+C:\uni\PR\PR_LL1\ClientGUI\obj\Debug\net7.0-windows\ClientGUI.csproj.CoreCompileInputs.cache
+C:\uni\PR\PR_LL1\ClientGUI\obj\Debug\net7.0-windows\ClientGUI.dll
+C:\uni\PR\PR_LL1\ClientGUI\obj\Debug\net7.0-windows\refint\ClientGUI.dll
+C:\uni\PR\PR_LL1\ClientGUI\obj\Debug\net7.0-windows\ClientGUI.pdb
+C:\uni\PR\PR_LL1\ClientGUI\obj\Debug\net7.0-windows\ClientGUI.genruntimeconfig.cache
+C:\uni\PR\PR_LL1\ClientGUI\obj\Debug\net7.0-windows\ref\ClientGUI.dll

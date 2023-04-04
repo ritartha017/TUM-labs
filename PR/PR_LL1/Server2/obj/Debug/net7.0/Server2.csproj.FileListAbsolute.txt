@@ -1,0 +1,15 @@
+C:\uni\PR\PR_LL1\Server2\bin\Debug\net7.0\Server2.exe
+C:\uni\PR\PR_LL1\Server2\bin\Debug\net7.0\Server2.deps.json
+C:\uni\PR\PR_LL1\Server2\bin\Debug\net7.0\Server2.runtimeconfig.json
+C:\uni\PR\PR_LL1\Server2\bin\Debug\net7.0\Server2.dll
+C:\uni\PR\PR_LL1\Server2\bin\Debug\net7.0\Server2.pdb
+C:\uni\PR\PR_LL1\Server2\obj\Debug\net7.0\Server2.csproj.AssemblyReference.cache
+C:\uni\PR\PR_LL1\Server2\obj\Debug\net7.0\Server2.GeneratedMSBuildEditorConfig.editorconfig
+C:\uni\PR\PR_LL1\Server2\obj\Debug\net7.0\Server2.AssemblyInfoInputs.cache
+C:\uni\PR\PR_LL1\Server2\obj\Debug\net7.0\Server2.AssemblyInfo.cs
+C:\uni\PR\PR_LL1\Server2\obj\Debug\net7.0\Server2.csproj.CoreCompileInputs.cache
+C:\uni\PR\PR_LL1\Server2\obj\Debug\net7.0\Server2.dll
+C:\uni\PR\PR_LL1\Server2\obj\Debug\net7.0\refint\Server2.dll
+C:\uni\PR\PR_LL1\Server2\obj\Debug\net7.0\Server2.pdb
+C:\uni\PR\PR_LL1\Server2\obj\Debug\net7.0\Server2.genruntimeconfig.cache
+C:\uni\PR\PR_LL1\Server2\obj\Debug\net7.0\ref\Server2.dll

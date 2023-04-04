@@ -1,0 +1,17 @@
+C:\uni\PR\PR_LL1\Server_GUI\bin\Debug\net7.0-windows\Server_GUI.exe
+C:\uni\PR\PR_LL1\Server_GUI\bin\Debug\net7.0-windows\Server_GUI.deps.json
+C:\uni\PR\PR_LL1\Server_GUI\bin\Debug\net7.0-windows\Server_GUI.runtimeconfig.json
+C:\uni\PR\PR_LL1\Server_GUI\bin\Debug\net7.0-windows\Server_GUI.dll
+C:\uni\PR\PR_LL1\Server_GUI\bin\Debug\net7.0-windows\Server_GUI.pdb
+C:\uni\PR\PR_LL1\Server_GUI\obj\Debug\net7.0-windows\Server_GUI.csproj.AssemblyReference.cache
+C:\uni\PR\PR_LL1\Server_GUI\obj\Debug\net7.0-windows\Server_GUI.ServerForm.resources
+C:\uni\PR\PR_LL1\Server_GUI\obj\Debug\net7.0-windows\Server_GUI.csproj.GenerateResource.cache
+C:\uni\PR\PR_LL1\Server_GUI\obj\Debug\net7.0-windows\Server_GUI.GeneratedMSBuildEditorConfig.editorconfig
+C:\uni\PR\PR_LL1\Server_GUI\obj\Debug\net7.0-windows\Server_GUI.AssemblyInfoInputs.cache
+C:\uni\PR\PR_LL1\Server_GUI\obj\Debug\net7.0-windows\Server_GUI.AssemblyInfo.cs
+C:\uni\PR\PR_LL1\Server_GUI\obj\Debug\net7.0-windows\Server_GUI.csproj.CoreCompileInputs.cache
+C:\uni\PR\PR_LL1\Server_GUI\obj\Debug\net7.0-windows\Server_GUI.dll
+C:\uni\PR\PR_LL1\Server_GUI\obj\Debug\net7.0-windows\refint\Server_GUI.dll
+C:\uni\PR\PR_LL1\Server_GUI\obj\Debug\net7.0-windows\Server_GUI.pdb
+C:\uni\PR\PR_LL1\Server_GUI\obj\Debug\net7.0-windows\Server_GUI.genruntimeconfig.cache
+C:\uni\PR\PR_LL1\Server_GUI\obj\Debug\net7.0-windows\ref\Server_GUI.dll

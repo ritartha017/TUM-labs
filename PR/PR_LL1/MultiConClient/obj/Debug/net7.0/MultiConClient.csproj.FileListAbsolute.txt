@@ -1,0 +1,15 @@
+C:\uni\PR\PR_LL1\MultiConClient\bin\Debug\net7.0\MultiConClient.exe
+C:\uni\PR\PR_LL1\MultiConClient\bin\Debug\net7.0\MultiConClient.deps.json
+C:\uni\PR\PR_LL1\MultiConClient\bin\Debug\net7.0\MultiConClient.runtimeconfig.json
+C:\uni\PR\PR_LL1\MultiConClient\bin\Debug\net7.0\MultiConClient.dll
+C:\uni\PR\PR_LL1\MultiConClient\bin\Debug\net7.0\MultiConClient.pdb
+C:\uni\PR\PR_LL1\MultiConClient\obj\Debug\net7.0\MultiConClient.csproj.AssemblyReference.cache
+C:\uni\PR\PR_LL1\MultiConClient\obj\Debug\net7.0\MultiConClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\uni\PR\PR_LL1\MultiConClient\obj\Debug\net7.0\MultiConClient.AssemblyInfoInputs.cache
+C:\uni\PR\PR_LL1\MultiConClient\obj\Debug\net7.0\MultiConClient.AssemblyInfo.cs
+C:\uni\PR\PR_LL1\MultiConClient\obj\Debug\net7.0\MultiConClient.csproj.CoreCompileInputs.cache
+C:\uni\PR\PR_LL1\MultiConClient\obj\Debug\net7.0\MultiConClient.dll
+C:\uni\PR\PR_LL1\MultiConClient\obj\Debug\net7.0\refint\MultiConClient.dll
+C:\uni\PR\PR_LL1\MultiConClient\obj\Debug\net7.0\MultiConClient.pdb
+C:\uni\PR\PR_LL1\MultiConClient\obj\Debug\net7.0\MultiConClient.genruntimeconfig.cache
+C:\uni\PR\PR_LL1\MultiConClient\obj\Debug\net7.0\ref\MultiConClient.dll

@@ -1,0 +1,7 @@
+C:\uni\PR\PR_LL1\MultipleConServUI\obj\Debug\net7.0-windows\MultipleConServUI.csproj.AssemblyReference.cache
+C:\uni\PR\PR_LL1\MultipleConServUI\obj\Debug\net7.0-windows\MultipleConServUI.Server.resources
+C:\uni\PR\PR_LL1\MultipleConServUI\obj\Debug\net7.0-windows\MultipleConServUI.csproj.GenerateResource.cache
+C:\uni\PR\PR_LL1\MultipleConServUI\obj\Debug\net7.0-windows\MultipleConServUI.GeneratedMSBuildEditorConfig.editorconfig
+C:\uni\PR\PR_LL1\MultipleConServUI\obj\Debug\net7.0-windows\MultipleConServUI.AssemblyInfoInputs.cache
+C:\uni\PR\PR_LL1\MultipleConServUI\obj\Debug\net7.0-windows\MultipleConServUI.AssemblyInfo.cs
+C:\uni\PR\PR_LL1\MultipleConServUI\obj\Debug\net7.0-windows\MultipleConServUI.csproj.CoreCompileInputs.cache
