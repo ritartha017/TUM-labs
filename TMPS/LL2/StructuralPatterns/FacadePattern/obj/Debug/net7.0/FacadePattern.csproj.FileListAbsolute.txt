@@ -1,0 +1,15 @@
+C:\TUM-labs\TMPS\LL2\StructuralPatterns\FacadePattern\bin\Debug\net7.0\FacadePattern.exe
+C:\TUM-labs\TMPS\LL2\StructuralPatterns\FacadePattern\bin\Debug\net7.0\FacadePattern.deps.json
+C:\TUM-labs\TMPS\LL2\StructuralPatterns\FacadePattern\bin\Debug\net7.0\FacadePattern.runtimeconfig.json
+C:\TUM-labs\TMPS\LL2\StructuralPatterns\FacadePattern\bin\Debug\net7.0\FacadePattern.dll
+C:\TUM-labs\TMPS\LL2\StructuralPatterns\FacadePattern\bin\Debug\net7.0\FacadePattern.pdb
+C:\TUM-labs\TMPS\LL2\StructuralPatterns\FacadePattern\obj\Debug\net7.0\FacadePattern.csproj.AssemblyReference.cache
+C:\TUM-labs\TMPS\LL2\StructuralPatterns\FacadePattern\obj\Debug\net7.0\FacadePattern.GeneratedMSBuildEditorConfig.editorconfig
+C:\TUM-labs\TMPS\LL2\StructuralPatterns\FacadePattern\obj\Debug\net7.0\FacadePattern.AssemblyInfoInputs.cache
+C:\TUM-labs\TMPS\LL2\StructuralPatterns\FacadePattern\obj\Debug\net7.0\FacadePattern.AssemblyInfo.cs
+C:\TUM-labs\TMPS\LL2\StructuralPatterns\FacadePattern\obj\Debug\net7.0\FacadePattern.csproj.CoreCompileInputs.cache
+C:\TUM-labs\TMPS\LL2\StructuralPatterns\FacadePattern\obj\Debug\net7.0\FacadePattern.dll
+C:\TUM-labs\TMPS\LL2\StructuralPatterns\FacadePattern\obj\Debug\net7.0\refint\FacadePattern.dll
+C:\TUM-labs\TMPS\LL2\StructuralPatterns\FacadePattern\obj\Debug\net7.0\FacadePattern.pdb
+C:\TUM-labs\TMPS\LL2\StructuralPatterns\FacadePattern\obj\Debug\net7.0\FacadePattern.genruntimeconfig.cache
+C:\TUM-labs\TMPS\LL2\StructuralPatterns\FacadePattern\obj\Debug\net7.0\ref\FacadePattern.dll
