@@ -42,10 +42,6 @@ class UDPChat
         sender.SetSocketOption(SocketOptionLevel.IP,
                              SocketOptionName.AddMembership,
                              new MulticastOption(IPAddress.Parse(multicastIP)));
-        // Set the Time to Live                          
-        sender.SetSocketOption(SocketOptionLevel.IP,
-                               SocketOptionName.MulticastTimeToLive,
-                               ttl);
         message = $"{username}: {message}";
         byte[] data = Encoding.UTF8.GetBytes(message);
         EndPoint receiverEP = new IPEndPoint(IPAddress.Parse(concreteIP), multicastPort);

@@ -1,7 +1,7 @@
 ﻿using TeacherExample;
 
 //string multicastIP = "239.5.6.7";
-string multicastIP = "224.0.0.0";
+string multicastIP = "225.1.1.1";
 int multicastPort = 5001;
 
 UdpChat chat = new UdpChat(multicastIP, multicastPort);
