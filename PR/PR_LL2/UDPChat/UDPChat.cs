@@ -51,11 +51,11 @@ class UDPChat
     {
         byte[] data = new byte[65535];
         using Socket receiver = new(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-        EndPoint remoteSender = new IPEndPoint(IPAddress.Any, 0);
-        receiver.Bind(new IPEndPoint(IPAddress.Parse(multicastIP), multicastPort));
+        IPEndPoint remoteSender = new(IPAddress.Any, multicastPort);
+        receiver.Bind(remoteSender);
         receiver.SetSocketOption(SocketOptionLevel.IP,
-                                SocketOptionName.AddMembership,
-                                new MulticastOption(IPAddress.Parse(multicastIP)));
+                                 SocketOptionName.AddMembership,
+                                 new MulticastOption(IPAddress.Parse(multicastIP)));
         while (true)
         {
             var result = await receiver.ReceiveFromAsync(data, remoteSender);
