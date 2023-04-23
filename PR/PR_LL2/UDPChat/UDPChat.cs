@@ -24,6 +24,9 @@ class UDPChat
     public async Task SendMessageToGeneralAsync(string message)
     {
         using Socket sender = new(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+        sender.SetSocketOption(SocketOptionLevel.IP,
+                                SocketOptionName.AddMembership,
+                                new MulticastOption(IPAddress.Parse(multicastIP)));
         message = $"{username}: {message}";
         byte[] data = Encoding.UTF8.GetBytes(message);
         EndPoint receiverEP = new IPEndPoint(IPAddress.Parse(multicastIP), multicastPort);
