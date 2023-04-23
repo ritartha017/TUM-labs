@@ -39,16 +39,17 @@ class UDPChat
     public async Task SendMessageToIpAsync(string concreteIP, string message)
     {
         using Socket sender = new(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+        sender.SetSocketOption(SocketOptionLevel.IP,
+                             SocketOptionName.AddMembership,
+                             new MulticastOption(IPAddress.Parse(multicastIP)));
         // Set the Time to Live                          
         sender.SetSocketOption(SocketOptionLevel.IP,
                                SocketOptionName.MulticastTimeToLive,
                                ttl);
-        while (true)
-        {
-            message = $"{username}: {message}";
-            byte[] data = Encoding.UTF8.GetBytes(message);
-            await sender.SendToAsync(data, new IPEndPoint(IPAddress.Parse(concreteIP), multicastPort));
-        }
+        message = $"{username}: {message}";
+        byte[] data = Encoding.UTF8.GetBytes(message);
+        EndPoint receiverEP = new IPEndPoint(IPAddress.Parse(concreteIP), multicastPort);
+        await sender.SendToAsync(data, receiverEP);
     }
 
     public async Task ReceiveMessageAsync()
