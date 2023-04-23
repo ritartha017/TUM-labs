@@ -5,15 +5,11 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UDPChat", "UDPChat.csproj", "{6AF48879-841A-4CDE-93D7-961DC3B9C722}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeacherExample", "..\TeacherExample\TeacherExample.csproj", "{93849BFE-564A-44D0-9D83-F5F41F859693}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeacherExample", "..\TeacherExample\TeacherExample.csproj", "{93849BFE-564A-44D0-9D83-F5F41F859693}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "..\test\test.csproj", "{F6B331B5-0E6E-4585-BDB2-4D3D758854B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "test", "..\test\test.csproj", "{F6B331B5-0E6E-4585-BDB2-4D3D758854B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test2", "..\test2\test2.csproj", "{ACB6CEE9-964A-45C9-BB59-57B7B752A053}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDPClient", "..\UDPClient\UDPClient.csproj", "{2B20F977-6AAB-474D-903D-88B5FD85A8DB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UDPServer", "..\UDPServer\UDPServer.csproj", "{06D2B6CB-125E-4131-BB51-BE6856B82D44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "test2", "..\test2\test2.csproj", "{ACB6CEE9-964A-45C9-BB59-57B7B752A053}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,14 +33,6 @@ Global
 		{ACB6CEE9-964A-45C9-BB59-57B7B752A053}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACB6CEE9-964A-45C9-BB59-57B7B752A053}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACB6CEE9-964A-45C9-BB59-57B7B752A053}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2B20F977-6AAB-474D-903D-88B5FD85A8DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2B20F977-6AAB-474D-903D-88B5FD85A8DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2B20F977-6AAB-474D-903D-88B5FD85A8DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2B20F977-6AAB-474D-903D-88B5FD85A8DB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{06D2B6CB-125E-4131-BB51-BE6856B82D44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06D2B6CB-125E-4131-BB51-BE6856B82D44}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06D2B6CB-125E-4131-BB51-BE6856B82D44}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06D2B6CB-125E-4131-BB51-BE6856B82D44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

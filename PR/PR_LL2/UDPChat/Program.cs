@@ -1,37 +1,39 @@
-﻿namespace UDPChat;
+﻿using System.Net.Sockets;
 
-class Program
+using UDPChatNamespace;
+
+//var chat = new UDPChat("239.5.6.7", 5002);
+var chat = new UDPChat("192.168.0.103", 5021);
+
+_ = Task.Run(chat.ReceiveMessageAsync);
+
+bool continueLoop = true;
+
+while (continueLoop)
 {
-    private static async Task Main(string[] args)
-    {
-        //var chat = new UDPChat("0.0.0.0", 8878);
-        var chat = new UDPChat("239.5.6.7", 5002);
-
-        _ = Task.Run(chat.ReceiveMessageAsync);
-
-        bool continueLoop = true;
-
-        while (continueLoop)
+    try {
+        string input = Console.ReadLine() ?? "";
+        if (!input.StartsWith(">"))
         {
-            try {
-                string input = Console.ReadLine() ?? "";
-                var splitted = input.Split(":");
-                string endUserRemoteIP = splitted[0];
-                string text = splitted[1];
-                
-                if (endUserRemoteIP == "0")
-                {
-                    await chat.SendMessageToGeneralAsync(text);
-                }
-                else
-                {
-                    await chat.SendMessageToIpAsync(endUserRemoteIP!);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message.ToString());
-            }
+            await chat.SendMessageToGeneralAsync(input);
+        }
+        else
+        {
+            var splitted = input.Split(":");
+            string endUserRemoteIP = splitted[0][1..]; // trim ">" symbol
+            string text = splitted[1];
+            await chat.SendMessageToIpAsync(endUserRemoteIP, text);
         }
     }
+    catch (SocketException se)
+    {
+        Console.Error.WriteLine("Socket Exception: "
+                                + se.ToString());
+    }
+    catch (Exception e)
+    {
+        Console.Error.WriteLine("Exception: "
+                                + e.ToString());
+    }
 }
+

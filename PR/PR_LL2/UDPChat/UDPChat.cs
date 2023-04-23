@@ -1,4 +1,4 @@
-﻿namespace UDPChat;
+﻿namespace UDPChatNamespace;
 
 using System;
 using System.Net;
@@ -7,9 +7,12 @@ using System.Text;
 
 class UDPChat
 {
+    private const int MAX_LEN = 1024;
     private string multicastIP;
     private int multicastPort;
-    private string? username = null;
+    private string? username;
+    bool done = false;
+    int ttl = 1; // time to live (1 hop)
     private ConsoleColor userChatColor;
 
     public UDPChat(string multicastIP, int multicastPort = 8888)
@@ -25,22 +28,23 @@ class UDPChat
     {
         using Socket sender = new(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
         sender.SetSocketOption(SocketOptionLevel.IP,
-                                SocketOptionName.AddMembership,
-                                new MulticastOption(IPAddress.Parse(multicastIP)));
+                               SocketOptionName.AddMembership,
+                               new MulticastOption(IPAddress.Parse(multicastIP)));
         message = $"{username}: {message}";
         byte[] data = Encoding.UTF8.GetBytes(message);
         EndPoint receiverEP = new IPEndPoint(IPAddress.Parse(multicastIP), multicastPort);
         await sender.SendToAsync(data, receiverEP);
     }
 
-    public async Task SendMessageToIpAsync(string concreteIP)
+    public async Task SendMessageToIpAsync(string concreteIP, string message)
     {
         using Socket sender = new(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-        Console.WriteLine("Type message and press Enter");
+        // Set the Time to Live                          
+        sender.SetSocketOption(SocketOptionLevel.IP,
+                               SocketOptionName.MulticastTimeToLive,
+                               ttl);
         while (true)
         {
-            var message = Console.ReadLine();
-            if (string.IsNullOrWhiteSpace(message)) break;
             message = $"{username}: {message}";
             byte[] data = Encoding.UTF8.GetBytes(message);
             await sender.SendToAsync(data, new IPEndPoint(IPAddress.Parse(concreteIP), multicastPort));
@@ -49,14 +53,17 @@ class UDPChat
 
     public async Task ReceiveMessageAsync()
     {
-        byte[] data = new byte[65535];
+        byte[] data = new byte[MAX_LEN];
         using Socket receiver = new(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+        // Set the reuse address option
+        receiver.SetSocketOption(SocketOptionLevel.Socket,
+                                 SocketOptionName.ReuseAddress, 1);
         IPEndPoint remoteSender = new(IPAddress.Any, multicastPort);
         receiver.Bind(remoteSender);
         receiver.SetSocketOption(SocketOptionLevel.IP,
                                  SocketOptionName.AddMembership,
                                  new MulticastOption(IPAddress.Parse(multicastIP)));
-        while (true)
+        while (!done)
         {
             var result = await receiver.ReceiveFromAsync(data, remoteSender);
             var message = Encoding.UTF8.GetString(data, 0, result.ReceivedBytes);
@@ -68,5 +75,9 @@ class UDPChat
             Console.ResetColor();
             Console.WriteLine(text);
         }
+        // Drop membership
+        receiver.SetSocketOption(SocketOptionLevel.IP,
+                                 SocketOptionName.DropMembership,
+                                 new MulticastOption(IPAddress.Parse(multicastIP)));
     }
 }

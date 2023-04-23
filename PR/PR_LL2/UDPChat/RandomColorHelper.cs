@@ -1,4 +1,4 @@
-﻿namespace UDPChat;
+﻿namespace UDPChatNamespace;
 
 static class RandomColorHelper
 {
