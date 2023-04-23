@@ -4,7 +4,8 @@ class Program
 {
     private static async Task Main(string[] args)
     {
-        var chat = new UDPChat("127.0.0.1", 8888);
+        // var chat = new UDPChat("127.0.0.1", 8888);
+        var chat = new UDPChat("239.5.6.7", 5002);
 
         _ = Task.Run(chat.ReceiveMessageAsync);
 

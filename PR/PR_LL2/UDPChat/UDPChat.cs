@@ -10,12 +10,16 @@ class UDPChat
     private string multicastIP;
     private int multicastPort;
     private string? username = null;
+    Socket receiver;
+    Socket sender;
     private ConsoleColor userChatColor;
 
     public UDPChat(string multicastIP, int multicastPort = 8888)
     {
         this.multicastIP = multicastIP;
         this.multicastPort = multicastPort;
+        receiver = new(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+        sender = new(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
         userChatColor = RandomColorHelper.GetRandomConsoleColor();
         Console.Write("Enter your name: ");
         username = Console.ReadLine();
@@ -23,7 +27,6 @@ class UDPChat
 
     public async Task SendMessageToGeneralAsync(string message)
     {
-        using Socket sender = new(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
         message = $"{username}: {message}";
         byte[] data = Encoding.UTF8.GetBytes(message);
         EndPoint receiverEP = new IPEndPoint(IPAddress.Parse(multicastIP), multicastPort);
@@ -47,7 +50,6 @@ class UDPChat
     public async Task ReceiveMessageAsync()
     {
         byte[] data = new byte[65535];
-        using Socket receiver = new(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
         EndPoint remoteSender = new IPEndPoint(IPAddress.Any, 0);
         receiver.Bind(new IPEndPoint(IPAddress.Parse(multicastIP), multicastPort));
         while (true)
