@@ -32,21 +32,23 @@ class UDPChat
                                new MulticastOption(IPAddress.Parse(multicastIP)));
         message = $"{username}: {message}";
         byte[] data = Encoding.UTF8.GetBytes(message);
-        IPAddress multicastIPAddress = IPAddress.Parse(this.multicastIP);
-        EndPoint multicastEP = new IPEndPoint(multicastIPAddress, multicastPort);
-        await sender.SendToAsync(data, multicastEP);
+        EndPoint receiverEP = new IPEndPoint(IPAddress.Parse(multicastIP), multicastPort);
+        await sender.SendToAsync(data, receiverEP);
     }
 
     public async Task SendMessageToIpAsync(string concreteIP, string message)
     {
         using Socket sender = new(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+        // Set the Time to Live                          
         sender.SetSocketOption(SocketOptionLevel.IP,
-                               SocketOptionName.AddMembership,
-                               new MulticastOption(IPAddress.Parse(multicastIP)));
-        message = $"{username}: {message}";
-        byte[] data = Encoding.UTF8.GetBytes(message);
-        EndPoint receiverEP = new IPEndPoint(IPAddress.Parse(concreteIP), multicastPort);
-        await sender.SendToAsync(data, receiverEP);
+                               SocketOptionName.MulticastTimeToLive,
+                               ttl);
+        while (true)
+        {
+            message = $"{username}: {message}";
+            byte[] data = Encoding.UTF8.GetBytes(message);
+            await sender.SendToAsync(data, new IPEndPoint(IPAddress.Parse(concreteIP), multicastPort));
+        }
     }
 
     public async Task ReceiveMessageAsync()
@@ -56,7 +58,7 @@ class UDPChat
         // Set the reuse address option
         receiver.SetSocketOption(SocketOptionLevel.Socket,
                                  SocketOptionName.ReuseAddress, 1);
-        EndPoint remoteSender = new IPEndPoint(IPAddress.Any, 0);
+        IPEndPoint remoteSender = new(IPAddress.Any, multicastPort);
         receiver.Bind(remoteSender);
         receiver.SetSocketOption(SocketOptionLevel.IP,
                                  SocketOptionName.AddMembership,
