@@ -2,6 +2,8 @@
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Management;
+using System.Diagnostics;
+using System;
 
 void HostName2IP(string hostname)
 {
@@ -36,49 +38,13 @@ static void DisplayDnsAdresses()
             if (dnsServers.Count < 0) return;
             foreach (IPAddress ip4 in dnsServers.Where(ip => ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork))
             {
-                Console.WriteLine("DNS Servers ............................. : {0}",
+                Console.WriteLine("ipv4 DNS Servers ............................. : {0}",
                     ip4.ToString());
             }
             foreach (IPAddress ip6 in dnsServers.Where(ip => ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetworkV6))
             {
-                Console.WriteLine("DNS Servers ............................. : {0}",
+                Console.WriteLine("ipv6 DNS Servers ............................. : {0}",
                     ip6.ToString());
-            }
-        }
-    }
-}
-
-static NetworkInterface GetActiveEthernetOrWifiNetworkInterface()
-{
-    var Nic = NetworkInterface.GetAllNetworkInterfaces().FirstOrDefault(
-        a => a.OperationalStatus == OperationalStatus.Up &&
-        (a.NetworkInterfaceType == NetworkInterfaceType.Wireless80211 || a.NetworkInterfaceType == NetworkInterfaceType.Ethernet) &&
-        a.GetIPProperties().GatewayAddresses.Any(g => g.Address.AddressFamily.ToString() == "InterNetwork"));
-
-    return Nic;
-}
-
-
-static void SetDNS(string DnsString)
-{
-    string[] Dns = { DnsString };
-    var CurrentInterface = GetActiveEthernetOrWifiNetworkInterface();
-    if (CurrentInterface == null) return;
-
-    ManagementClass objMC = new ManagementClass("Win32_NetworkAdapterConfiguration");
-    ManagementObjectCollection objMOC = objMC.GetInstances();
-    foreach (ManagementObject objMO in objMOC)
-    {
-        if ((bool)objMO["IPEnabled"])
-        {
-            if (objMO["Description"].ToString().Equals(CurrentInterface.Description))
-            {
-                ManagementBaseObject objdns = objMO.GetMethodParameters("SetDNSServerSearchOrder");
-                if (objdns != null)
-                {
-                    objdns["DNSServerSearchOrder"] = Dns;
-                    objMO.InvokeMethod("SetDNSServerSearchOrder", objdns, null);
-                }
             }
         }
     }
@@ -91,13 +57,45 @@ bool PPrint(Action funcToRun)
     return true;
 }
 
+void SetDNS(string ipServer)
+{
+    using var psi = Process.Start("/bin/bash", $"-c \"networksetup -setdnsservers Wi-Fi {ipServer}\"");
+    psi.WaitForExit();
+}
+
+void ShowDNSServer()
+{
+    using var psi = Process.Start("/bin/bash", "-c \"scutil --dns | grep 'nameserver\\[[0-9]*\\]'\"");
+    psi.WaitForExit();
+}
+
 string stackoverflowDomain = "stackoverflow.com";
 string randomIp = "204.79.197.200";
 
+PPrint(() => SetDNS("192.168.1.1"));
+Thread.Sleep(1000);
 PPrint(() => DisplayDnsAdresses());
-SetDNS("127.0.0.1");
+
+PPrint(() => SetDNS("8.8.8.8"));
+Thread.Sleep(1000);
 PPrint(() => DisplayDnsAdresses());
-PPrint(() => HostName2IP(stackoverflowDomain));
-PPrint(() => IP2HostName(randomIp));
+
+PPrint(() => SetDNS("0.0.0.0"));
+Thread.Sleep(1000);
+PPrint(() => DisplayDnsAdresses());
+
+try
+{
+    PPrint(() => HostName2IP(stackoverflowDomain));
+    PPrint(() => IP2HostName(randomIp));
+}
+catch(SocketException se)
+{
+    Console.WriteLine(se.ToString());
+}
+catch (Exception e)
+{
+    Console.WriteLine(e.ToString());
+}
 
 Console.ReadKey();
