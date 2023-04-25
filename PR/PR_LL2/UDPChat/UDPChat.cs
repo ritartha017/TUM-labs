@@ -52,9 +52,6 @@ class UDPChat
     {
         byte[] data = new byte[MAX_LEN];
         using Socket receiver = new(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-        // Set the reuse address option
-        receiver.SetSocketOption(SocketOptionLevel.Socket,
-                                 SocketOptionName.ReuseAddress, 1);
         IPEndPoint remoteSender = new(IPAddress.Any, multicastPort);
         receiver.Bind(remoteSender);
         receiver.SetSocketOption(SocketOptionLevel.IP,
