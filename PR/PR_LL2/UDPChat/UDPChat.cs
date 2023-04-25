@@ -57,6 +57,9 @@ class UDPChat
         receiver.SetSocketOption(SocketOptionLevel.IP,
                                  SocketOptionName.AddMembership,
                                  new MulticastOption(IPAddress.Parse(multicastIP)));
+        receiver.SetSocketOption(SocketOptionLevel.IP,
+                                 SocketOptionName.MulticastTimeToLive,
+                                 ttl);
         while (!done)
         {
             var result = await receiver.ReceiveFromAsync(data, remoteSender);
