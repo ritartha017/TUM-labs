@@ -7,4 +7,23 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Receiver\" />
+    <None Remove="ConcreteCommand\" />
+    <None Remove="Invoker\" />
+    <None Remove="Models\" />
+    <None Remove="Repository\" />
+    <None Remove="Queries\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Receiver\" />
+    <Folder Include="ConcreteCommand\" />
+    <Folder Include="Invoker\" />
+    <Folder Include="Models\" />
+    <Folder Include="Repository\" />
+    <Folder Include="Queries\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
 </Project>

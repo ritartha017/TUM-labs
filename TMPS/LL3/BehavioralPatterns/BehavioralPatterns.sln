@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MementoPattern", "MementoPa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandPattern", "CommandPattern\CommandPattern.csproj", "{835CAEB1-771C-42C5-86AE-3D35119537C6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GildedRose", "..\..\..\..\Users\MSorunga\Downloads\hw-endava-main\hw-endava-main\2. OOP & SOLID\csharpcore-Verify.xunit\GildedRose\GildedRose.csproj", "{DE46614E-153B-4E38-A33C-413C40E650D6}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
