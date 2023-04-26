@@ -7,4 +7,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="AbstractClass\" />
+    <None Remove="Factory\" />
+    <None Remove="Items\" />
+    <None Remove="Template\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Factory\" />
+    <Folder Include="Items\" />
+    <Folder Include="Template\" />
+  </ItemGroup>
 </Project>

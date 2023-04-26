@@ -7,4 +7,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Context\" />
+    <None Remove="State\" />
+    <None Remove="StateA\" />
+    <None Remove="StateB\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Context\" />
+    <Folder Include="State\" />
+    <Folder Include="StateA\" />
+    <Folder Include="StateB\" />
+  </ItemGroup>
 </Project>

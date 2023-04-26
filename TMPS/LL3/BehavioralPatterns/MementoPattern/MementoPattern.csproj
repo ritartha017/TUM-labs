@@ -7,4 +7,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Memento\" />
+    <None Remove="Originator\" />
+    <None Remove="Caretaker\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Memento\" />
+    <Folder Include="Originator\" />
+    <Folder Include="Caretaker\" />
+  </ItemGroup>
 </Project>
