@@ -10,13 +10,11 @@
   <ItemGroup>
     <None Remove="Context\" />
     <None Remove="State\" />
-    <None Remove="StateA\" />
-    <None Remove="StateB\" />
+    <None Remove="ConcreteStates\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Context\" />
     <Folder Include="State\" />
-    <Folder Include="StateA\" />
-    <Folder Include="StateB\" />
+    <Folder Include="ConcreteStates\" />
   </ItemGroup>
 </Project>
