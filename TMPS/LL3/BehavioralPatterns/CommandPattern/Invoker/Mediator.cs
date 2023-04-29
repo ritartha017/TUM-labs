@@ -1,14 +1,12 @@
-﻿using System;
-using CommandPattern.Commands;
-using CommandPattern.Models;
+﻿using CommandPattern.Commands;
 
 namespace CommandPattern.Invoker;
 
 public class Mediator
 {
-	IEmployeeCommand command;
+	IUserCommand command;
 
-	public void SetCommand(IEmployeeCommand command)
+	public void SetCommand(IUserCommand command)
 	{
 		this.command = command;
 	}
