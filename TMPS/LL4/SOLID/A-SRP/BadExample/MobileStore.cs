@@ -1,7 +1,6 @@
 ﻿namespace BadExample;
 
-using System;
-using System.Collections.Generic;
+using System.Numerics;
 
 class MobileStore
 {

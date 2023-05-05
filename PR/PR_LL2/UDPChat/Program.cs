@@ -2,8 +2,8 @@
 
 using UDPChatNamespace;
 
-var chat = new UDPChat("225.1.1.1", 5002);
-//var chat = new UDPChat("239.5.6.7", 5002);
+//var chat = new UDPChat("225.1.1.1", 5002);
+var chat = new UDPChat("239.5.6.7", 5002);
 //var chat = new UDPChat("192.168.0.103", 5021);
 
 _ = Task.Run(chat.ReceiveMessageAsync);

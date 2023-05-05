@@ -1,5 +1,8 @@
 ﻿namespace GoodExample.Implementations;
 
+using GoodExample.Abstract;
+using GoodExample.Entities;
+
 class GeneralPhoneBinder : IPhoneBinder
 {
     public Phone CreatePhone(string?[] data)

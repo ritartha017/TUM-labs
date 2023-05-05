@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using GoodExample.Abstract;
 
 class MobileStore
 {
@@ -28,11 +29,11 @@ class MobileStore
         {
             phones.Add(phone);
             Saver.Save(phone, "store.txt");
-            Console.WriteLine("Данные успешно обработаны");
+            Console.WriteLine("Data is successefully processed.");
         }
         else
         {
-            Console.WriteLine("Некорректные данные");
+            Console.WriteLine("Incorrect data.");
         }
     }
 }

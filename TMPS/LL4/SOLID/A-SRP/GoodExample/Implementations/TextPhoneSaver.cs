@@ -1,4 +1,7 @@
 ﻿namespace GoodExample.Implementations;
+
+using GoodExample.Entities;
+
 class TextPhoneSaver : IPhoneSaver
 {
     public void Save(Phone phone, string fileName)
