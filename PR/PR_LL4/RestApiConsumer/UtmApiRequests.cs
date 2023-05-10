@@ -1,6 +1,5 @@
 ﻿using RestSharp;
 using RestApiConsumer.Dtos;
-using RestApiConsumer.Models;
 
 namespace RestApiConsumer;
 
@@ -41,7 +40,7 @@ class UtmApiRequests
     /// 3. Creates new category
     /// </summary>
     /// <param name="category"></param>
-    public void PostCategory(Category category)
+    public void PostCategory(CreateCategoryDto category)
     {
         var url = "http://localhost:65052";
         var client = new RestClient(url);

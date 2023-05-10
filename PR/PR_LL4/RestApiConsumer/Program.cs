@@ -1,6 +1,5 @@
 ﻿using Spectre.Console;
 using RestApiConsumer;
-using RestApiConsumer.Models;
 using System.Text.Json;
 using RestApiConsumer.Dtos;
 
@@ -173,7 +172,7 @@ void CallPostCategory()
 {
     Console.WriteLine("Input desired category title:");
     var title = Console.ReadLine();
-    var category = new Category()
+    var category = new CreateCategoryDto()
     {
         Title = title
     };
