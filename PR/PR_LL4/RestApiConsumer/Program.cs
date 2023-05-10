@@ -1,11 +1,8 @@
-﻿using System;
-using Spectre.Console;
+﻿using Spectre.Console;
 using RestApiConsumer;
-using System;
 using RestApiConsumer.Models;
-using RestApiConsumer.Dtos;
 using System.Text.Json;
-using System.Reflection;
+using RestApiConsumer.Dtos;
 
 UtmApiRequests requester = new UtmApiRequests();
 
@@ -14,6 +11,7 @@ while (true)
 {
     try
     {
+        Console.Clear();
         var choice = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .Title("Chose an [blue]option[/]?")
@@ -43,24 +41,36 @@ while (true)
     {
         case 1:
             CallGetCategories();
+            Console.ReadKey();
             break;
         case 2:
+            CallGetCategories();
             CallGetCategoryById();
+            Console.ReadKey();
             break;
         case 3:
             CallPostCategory();
+            Console.ReadKey();
             break;
         case 4:
+            CallGetCategories();
             CallDeleteCategory();
+            Console.ReadKey();
             break;
         case 5:
+            CallGetCategories();
             CallUpdateTitleForCategoryId();
+            Console.ReadKey();
             break;
         case 6:
+            CallGetCategories();
             CallPostProductForCategoryId();
+            Console.ReadKey();
             break;
         case 7:
+            CallGetCategories();
             CallGetProductsForCategoryId();
+            Console.ReadKey();
             break;
         case 8:
             Environment.Exit(0);
@@ -77,7 +87,28 @@ void CallGetProductsForCategoryId()
     Console.WriteLine("Input category to show the products");
     var requesteId = Console.ReadLine();
     Int32.TryParse(requesteId, out int id);
-    requester.GetProductsForCategoryId(id);
+    var res = requester.GetCategoryById(id);
+    if (res is null)
+    {
+        Console.WriteLine("Unexistent category id.");
+        return;
+    }
+    var products = requester.GetProductsForCategoryId(id);
+    if (products.Count <= 0)
+    {
+        Console.WriteLine($"There are no existing products for category id = {id}.");
+        return;
+    }
+    foreach (var category in products.Select((value, i) => new { i, value }))
+    {
+        string jsonString = JsonSerializer.Serialize(category.value);
+        AnsiConsole.Write(
+            new Panel(jsonString)
+                .Header(category.i.ToString())
+                .Collapse()
+                .RoundedBorder()
+                .BorderColor(Color.Yellow));
+    }
 }
 
 // 6
@@ -86,7 +117,23 @@ void CallPostProductForCategoryId()
     Console.WriteLine("Input category id to add new product:");
     var requesteId = Console.ReadLine();
     Int32.TryParse(requesteId, out int id);
-    requester.PostProductForCategoryId(id);
+    var res = requester.GetCategoryById(id);
+    if (res is null)
+    {
+        Console.WriteLine("Unexistent category id.");
+        return;
+    }
+    Console.WriteLine("Enter title:");
+    var newProductTitle = Console.ReadLine();
+    Console.WriteLine("Enter price:");
+    var requestedProductPrice = Console.ReadLine();
+    Decimal.TryParse(requestedProductPrice, out decimal newProductPrice);
+    var newProduct = new ProductShortDto
+    {
+        Title = newProductTitle,
+        Price = newProductPrice,
+    };
+    requester.PostProductForCategoryId(id, newProduct);
 }
 
 // 5
@@ -95,8 +142,15 @@ void CallUpdateTitleForCategoryId()
     Console.WriteLine("Input category id to update the title:");
     var requesteId = Console.ReadLine();
     Int32.TryParse(requesteId, out int id);
-    requester.UpdateTitleForCategoryId(id);
-
+    var res = requester.GetCategoryById(id);
+    if (res is null)
+    {
+        Console.WriteLine("Unexistent category id.");
+        return;
+    }
+    Console.WriteLine("Enter new title:");
+    var newProductTitle = Console.ReadLine();
+    requester.UpdateTitleForCategoryId(id, newProductTitle);
 }
 
 // 4
@@ -105,6 +159,12 @@ void CallDeleteCategory()
     Console.WriteLine("Input category id to delete:");
     var requesteId = Console.ReadLine();
     Int32.TryParse(requesteId, out int id);
+    var res = requester.GetCategoryById(id);
+    if (res is null)
+    {
+        Console.WriteLine("Unexistent category id.");
+        return;
+    }
     requester.DeleteCategory(id);
 }
 
@@ -127,6 +187,11 @@ void CallGetCategoryById()
     var requesteId = Console.ReadLine();
     Int32.TryParse(requesteId, out int id);
     var res = requester.GetCategoryById(id);
+    if (res is null)
+    {
+        Console.WriteLine("Unexistent category id.");
+        return;
+    }
     string jsonString = JsonSerializer.Serialize(res);
     AnsiConsole.Write(
         new Panel(jsonString)
@@ -141,6 +206,10 @@ void CallGetCategories()
 {
     Console.WriteLine("Available categories:");
     var res = requester.GetCategories();
+    if (res is null) {
+        Console.WriteLine("There are no existing categories.");
+        return;
+    }
     foreach(var category in res.Select((value, i) => new { i, value }))
     {
         string jsonString = JsonSerializer.Serialize(category.value);
@@ -150,5 +219,5 @@ void CallGetCategories()
                 .Collapse()
                 .RoundedBorder()
                 .BorderColor(Color.Yellow));
-            }
+     }
 }

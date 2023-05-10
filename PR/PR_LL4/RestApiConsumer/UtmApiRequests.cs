@@ -1,9 +1,6 @@
 ﻿using RestSharp;
 using RestApiConsumer.Dtos;
 using RestApiConsumer.Models;
-using Newtonsoft.Json.Linq;
-using System.Xml.Linq;
-using Newtonsoft.Json;
 
 namespace RestApiConsumer;
 
@@ -72,19 +69,15 @@ class UtmApiRequests
     /// 5. Updates title for category id
     /// </summary>
     /// <param name="id"></param>
-    public void UpdateTitleForCategoryId(int id)
+    public void UpdateTitleForCategoryId(int id, string newProductTitle)
     {
         var url = "http://localhost:65052";
         var client = new RestClient(url);
-        var request = new RestRequest("api/Category/categories/{id}/products", Method.Post)
+        var request = new RestRequest("api/Category/{id}", Method.Put)
             .AddUrlSegment("id", id);
-        request.RequestFormat = RestSharp.DataFormat.Json;
-        request.AddJsonBody(new ProductShortDto
+        request.AddBody(new
         {
-            Id = 2,
-            Title = "SomeRandomTitle",
-            Price = 200,
-            CategoryId = id
+            Title = newProductTitle,
         });
         var response = client.Execute(request);
     }
@@ -93,20 +86,14 @@ class UtmApiRequests
     /// 6. Creates new product for category id
     /// </summary>
     /// <param name="id">Category id</param>
-    public void PostProductForCategoryId(int id)
+    public void PostProductForCategoryId(int id, ProductShortDto newProduct)
     {
         var url = "http://localhost:65052";
         var client = new RestClient(url);
         var request = new RestRequest("api/Category/categories/{id}/products", Method.Post)
             .AddUrlSegment("id", id);
         request.RequestFormat = RestSharp.DataFormat.Json;
-        request.AddJsonBody(new ProductShortDto
-        {
-            Id = 2,
-            Title = "SomeRandomTitle",
-            Price = 200,
-            CategoryId = id
-        });
+        request.AddJsonBody(newProduct);
         var response = client.Execute(request);
     }
 
