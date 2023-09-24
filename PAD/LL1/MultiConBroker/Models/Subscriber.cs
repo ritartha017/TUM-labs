@@ -1,5 +1,4 @@
 ﻿
-using System;
 namespace MultiConBroker;
 
 public class Subscriber
@@ -11,4 +10,3 @@ public class Subscriber
 	{
 	}
 }
-

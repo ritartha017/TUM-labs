@@ -1,10 +1,10 @@
 ﻿using System.Text;
 using Newtonsoft.Json;
-using Publisher;
+using MulticonPublisher;
 
 Console.WriteLine("[PUBLISHER]");
 
-var publisher = new PublisherSocket();
+var publisher = new Publisher();
 var connected = publisher.StartConnect("127.0.0.1", 8);
 
 if (!connected) return;

@@ -1,4 +1,4 @@
-﻿namespace Publisher;
+﻿namespace MulticonPublisher;
 
 class Payload
 {

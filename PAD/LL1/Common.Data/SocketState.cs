@@ -6,4 +6,3 @@ public enum SocketState
     Connecting,
     Connected
 }
-

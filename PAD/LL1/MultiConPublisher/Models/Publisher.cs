@@ -2,7 +2,7 @@
 using System.Net.Sockets;
 using Common.Data;
 
-namespace Publisher;
+namespace MulticonPublisher;
 
 public class Publisher
 {

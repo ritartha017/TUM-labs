@@ -22,6 +22,7 @@ public class PublisherReceivedHandler : EventArgs
 
         if (payloadString.StartsWith("subscribe#"))
         {
+            var topic = payloadString.Split("subscribe#").LastOrDefault();
             
         }
         else if (IsValidJson(payloadString))

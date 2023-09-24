@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiConBroker", "MultiConB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultiConSubscriber", "MultiConSubscriber\MultiConSubscriber.csproj", "{0DC3C087-0F89-4BCE-827A-C530288CADF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Data", "Common.Data\Common.Data.csproj", "{F2518240-2120-49C0-AF61-9AF9C2FA3F6A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Data", "Common.Data\Common.Data.csproj", "{375ABA82-5D7F-4C72-A03A-5609D3CB474D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{0DC3C087-0F89-4BCE-827A-C530288CADF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DC3C087-0F89-4BCE-827A-C530288CADF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DC3C087-0F89-4BCE-827A-C530288CADF4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F2518240-2120-49C0-AF61-9AF9C2FA3F6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F2518240-2120-49C0-AF61-9AF9C2FA3F6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F2518240-2120-49C0-AF61-9AF9C2FA3F6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F2518240-2120-49C0-AF61-9AF9C2FA3F6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{375ABA82-5D7F-4C72-A03A-5609D3CB474D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{375ABA82-5D7F-4C72-A03A-5609D3CB474D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{375ABA82-5D7F-4C72-A03A-5609D3CB474D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{375ABA82-5D7F-4C72-A03A-5609D3CB474D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
