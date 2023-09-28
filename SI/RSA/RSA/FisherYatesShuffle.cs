@@ -1,4 +1,4 @@
-﻿namespace RSA;
+﻿namespace RSAShuffler;
 
 public static class FisherYatesShuffle
 {

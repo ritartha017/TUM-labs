@@ -1,33 +1,35 @@
 ﻿using System.Net;
 using System.Net.Sockets;
+using System.Text;
 using Common.Data;
+using MultiConSubscriber.EventHandlers;
 
 namespace MultiConSubscriber;
 
 public class Subscriber
 {
     private const int connectionTimeOutms = 5000;
-    private Socket theDevSock;
+    private Socket socket;
     private string topic;
-    private SocketState sockState;
+    private SocketState socketState;
 
     public Subscriber(string topic)
     {
         this.topic = topic;
-        this.theDevSock = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        this.sockState = SocketState.Disconnected;
+        this.socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        this.socketState = SocketState.Disconnected;
     }
 
-    public bool StartConnect(string ipAddress = "192.168.1.10", int port = 1000)
+    public bool StartConnect(string ipAddress, int port)
     {
         try
         {
             Console.WriteLine("Start connect to server...");
             var endPoint = new IPEndPoint(IPAddress.Parse(ipAddress), port);
-            IAsyncResult asyncResult = this.theDevSock.BeginConnect(endPoint, ConnectCallback, theDevSock);
+            IAsyncResult asyncResult = this.socket.BeginConnect(endPoint, ConnectCallback, socket);
             bool flag = asyncResult.AsyncWaitHandle.WaitOne(connectionTimeOutms, true);
             if (!flag) throw new TimeoutException("The waiting was too long.");
-            sockState = SocketState.Connecting;
+            socketState = SocketState.Connecting;
             return true;
         }
         catch (Exception ex)
@@ -42,15 +44,15 @@ public class Subscriber
     {
         try
         {
-            theDevSock = (Socket)asyncResult.AsyncState;
-            theDevSock.EndConnect(asyncResult);
-            if (theDevSock != null && theDevSock.Connected)
+            socket = (Socket)asyncResult.AsyncState;
+            socket.EndConnect(asyncResult);
+            if (socket != null && socket.Connected)
             {
-                sockState = SocketState.Connected;
-                Console.WriteLine("Subscriber connected to broker.");
+                socketState = SocketState.Connected;
+                Console.WriteLine("Subscriber is connected to broker...");
                 return;
             }
-            Console.WriteLine("Failed to connect broker.");
+            Console.WriteLine("Failed to connect to broker...");
         }
         catch (Exception ex)
         {
@@ -59,11 +61,13 @@ public class Subscriber
         CloseSocket();
     }
 
-    public void Send(byte[] data)
+    public void Subscribe()
     {
+        var message = Encoding.UTF8.GetBytes("subscribe#" + "hardcoded");
+        Console.WriteLine("sent");
         try
         {
-            theDevSock.Send(data);
+            socket.Send(message);
         }
         catch (Exception ex)
         {
@@ -75,20 +79,22 @@ public class Subscriber
     {
         try
         {
-            if (theDevSock != null && theDevSock.Connected)
+            if (socket != null && socket.Connected)
             {
-                theDevSock.Shutdown(SocketShutdown.Both);
-                theDevSock.Close();
-                theDevSock.Dispose();
+                socket.Shutdown(SocketShutdown.Both);
+                socket.Close();
+                socket.Dispose();
             }
         }
         catch (Exception ex)
         {
             Console.WriteLine(ex.ToString());
         }
-        theDevSock = null;
-        sockState = SocketState.Disconnected;
+        socket = null;
+        socketState = SocketState.Disconnected;
     }
 
-    public event EventHandler<SubscriberConnectedEventHandler> Connected;
+    public event EventHandler<ConnectedHandler> Connected;
+    public event EventHandler<SubscribedHandler> Subscribed;
+    public event EventHandler<ReceivedHandler> Received;
 }

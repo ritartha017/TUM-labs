@@ -1,5 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Text;
+using MultiConSubscriber.EventHandlers;
+using MultiConSubscriber.Models;
+using Common.Data;
 
 namespace MultiConSubscriber;
 
@@ -9,29 +12,28 @@ class Program
 
     static void Main(string[] args)
     {
-        Console.Write("Enter topic: ");
-        var topic = Console.ReadLine();
-        subscriber = new Subscriber(topic);
-        subscriber.Connected += new EventHandler<SubscriberConnectedEventHandler>(Subscriber_Connected);
-        subscriber.Start();
+        Console.WriteLine("[SUBSCRIBER]");
+        //Console.Write("Enter topic: ");
+        //var topic = Console.ReadLine();
+        subscriber = new Subscriber("coded2");
 
-        Process.GetCurrentProcess().WaitForExit();
+        subscriber.Connected += new EventHandler<ConnectedHandler>(Broker_Connected);
+
+        var connected = subscriber.StartConnect(CommonConstants.BROKER_IP, CommonConstants.BROKER_PORT);
+        if (!connected) return;
+        Thread.Sleep(10);
+        subscriber.Subscribe();
+
+        Console.Read();
     }
 
-    static void Subscriber_Connected(object publisher, SubscriberConnectedEventHandler e)
+    private static void Broker_Connected(object? sender, ConnectedHandler e)
     {
-        Console.WriteLine("New Connection: {0}\n{1}\n===========", e.Accepted.RemoteEndPoint, DateTime.Now);
-        Publisher s = new(e.Accepted);
-        s.Received += new EventHandler<PublisherReceivedHandler>(PublisherReceived);
-        s.Disconnected += new EventHandler<PublisherDisconnectedHandler>(PublisherDisconnected);
+        Broker b = new Broker(e.Socket);
+        b.Received += new EventHandler<ReceivedHandler>(Received);
     }
 
-    private static void PublisherDisconnected(object? publisher, PublisherDisconnectedHandler e)
-    {
-        Console.WriteLine($"Disconnected: {e.Publisher.ID}");
-    }
-
-    private static void PublisherReceived(object? publisher, PublisherReceivedHandler e)
+    private static void Received(object? sender, ReceivedHandler e)
     {
         Console.WriteLine(Encoding.UTF8.GetString(e.data, 0, e.data.Length));
     }

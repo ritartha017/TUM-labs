@@ -5,17 +5,19 @@ namespace MultiConBroker;
 
 public class Publisher
 {
-	public string ID { get; private set; }
 	public IPEndPoint? EndPoint { get; private set; }
 	private Socket publisherSocket;
 
 	public Publisher(Socket accepted)
 	{
 		publisherSocket = accepted;
-		ID = Guid.NewGuid().ToString();
 		EndPoint = (IPEndPoint?)publisherSocket.RemoteEndPoint;
-        publisherSocket.BeginReceive(new byte[] { 0 }, 0, 0, 0, ReceivedCallback, null);
 	}
+
+	public void StartReceive()
+	{
+        publisherSocket.BeginReceive(new byte[] { 0 }, 0, 0, 0, ReceivedCallback, null);
+    }
 
     void ReceivedCallback(IAsyncResult ar)
     {
@@ -32,16 +34,16 @@ public class Publisher
 					Array.Resize<byte>(ref buff, rec);
                 if (buff.Length == 0) return;
 
-                Received?.Invoke(this, new PublisherReceivedHandler(this, buff));
+                Received?.Invoke(this, new ReceivedHandler(this, buff));
 
 				publisherSocket.BeginReceive(new byte[] { 0 }, 0, 0, 0, ReceivedCallback, null);
 			}
 		}
 		catch (Exception ex)
 		{
-			Console.WriteLine(ex.Message);
+			Console.WriteLine(ex.ToString());
 			Close();
-            Disconnected?.Invoke(this, new PublisherDisconnectedHandler(this));
+            Disconnected?.Invoke(this, new DisconnectedHandler(this));
         }
     }
 
@@ -51,6 +53,6 @@ public class Publisher
 		publisherSocket.Dispose();
 	}
 
-    public event EventHandler<PublisherReceivedHandler> Received;
-    public event EventHandler<PublisherDisconnectedHandler> Disconnected;
+    public event EventHandler<ReceivedHandler> Received;
+    public event EventHandler<DisconnectedHandler> Disconnected;
 }

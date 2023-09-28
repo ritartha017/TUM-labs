@@ -1,6 +1,6 @@
-﻿namespace MultiConBroker;
+﻿namespace Common.Data;
 
-class Payload
+public class Payload
 {
     public string Topic { get; set; }
     public string Message { get; set; }

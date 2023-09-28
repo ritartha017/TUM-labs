@@ -1,21 +1,20 @@
 ﻿using System.Text;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace MultiConBroker;
 
-public class PublisherReceivedHandler : EventArgs
+public class ReceivedHandler : EventArgs
 {
     public Publisher Publisher { get; private set; }
     public byte[] data { get; private set; }
 
-    public PublisherReceivedHandler(Publisher p, byte[] d)
+    public ReceivedHandler(Publisher p, byte[] data)
     {
         Publisher = p;
-        data = (byte[])d.Clone();
-        Handle(data);
+        this.data = (byte[])data.Clone();
+        // Handle(data);
     }
 
+    /*
     private void Handle(byte[] data)
     {
         var payloadString = Encoding.UTF8.GetString(data);
@@ -23,11 +22,13 @@ public class PublisherReceivedHandler : EventArgs
         if (payloadString.StartsWith("subscribe#"))
         {
             var topic = payloadString.Split("subscribe#").LastOrDefault();
+            SubscribersRepository.Add(new Subscriber() { Topic = topic, Address = Publisher.EndPoint.Address.ToString() });
             
         }
         else if (IsValidJson(payloadString))
         {
             Payload? payload = JsonConvert.DeserializeObject<Payload>(payloadString);
+            PayloadQueue.Add(payload);
         }
     }
 
@@ -58,5 +59,5 @@ public class PublisherReceivedHandler : EventArgs
         {
             return false;
         }
-    }
+    }*/
 }

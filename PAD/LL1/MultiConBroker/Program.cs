@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Text;
+using Common.Data;
 
 namespace MultiConBroker;
 
@@ -10,28 +11,29 @@ class Program
     static void Main(string[] args)
     {
         Console.WriteLine("[BROKER] started listenning..");
-        broker = new Broker(8);
-        broker.SocketAccepted += new EventHandler<PublisherAcceptedEventHandler>(Broker_SocketAccepted);
+        broker = new Broker(CommonConstants.BROKER_IP, CommonConstants.BROKER_PORT);
+        broker.SocketAccepted += new EventHandler<AcceptedHandler>(Broker_SocketAccepted);
         broker.Start();
 
         Process.GetCurrentProcess().WaitForExit();
     }
 
-    static void Broker_SocketAccepted(object publisher, PublisherAcceptedEventHandler e)
+    static void Broker_SocketAccepted(object publisher, AcceptedHandler e)
     {
-        Console.WriteLine("New Connection: {0}\n{1}\n===========", e.Accepted.RemoteEndPoint, DateTime.Now);
-        Publisher s = new(e.Accepted);
-        s.Received += new EventHandler<PublisherReceivedHandler>(PublisherReceived);
-        s.Disconnected += new EventHandler<PublisherDisconnectedHandler>(PublisherDisconnected);
+        Console.WriteLine("New Connection: {0} DateTime: {1}", e.Accepted.RemoteEndPoint, DateTime.Now);
+        Publisher socket = new(e.Accepted);
+        socket.Received += new EventHandler<ReceivedHandler>(PublisherReceived);
+        socket.Disconnected += new EventHandler<DisconnectedHandler>(PublisherDisconnected);
+        socket.StartReceive();
     }
 
-    private static void PublisherDisconnected(object? publisher, PublisherDisconnectedHandler e)
+    private static void PublisherDisconnected(object? publisher, DisconnectedHandler e)
     {
-        Console.WriteLine($"Disconnected: {e.Publisher.ID}");
+        Console.WriteLine($"Disconnected: {e.Publisher.EndPoint}");
     }
 
-    private static void PublisherReceived(object? publisher, PublisherReceivedHandler e)
+    private static void PublisherReceived(object? publisher, ReceivedHandler e)
     {
-        Console.WriteLine(Encoding.UTF8.GetString(e.data, 0, e.data.Length));
+        Console.WriteLine($"{e.Publisher.EndPoint}: { Encoding.UTF8.GetString(e.data, 0, e.data.Length)}");
     }
 }

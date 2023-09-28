@@ -2,11 +2,11 @@
 
 namespace MultiConSubscriber;
 
-public class SubscriberConnectedEventHandler : EventArgs
+public class ConnectedHandler : EventArgs
 {
     public Socket Socket { get; private set; }
 
-    public SubscriberConnectedEventHandler(Socket socket)
+    public ConnectedHandler(Socket socket)
 	{
         this.Socket = socket;
     }

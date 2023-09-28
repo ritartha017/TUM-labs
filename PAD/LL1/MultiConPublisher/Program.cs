@@ -1,17 +1,17 @@
 ﻿using System.Text;
 using Newtonsoft.Json;
 using MulticonPublisher;
+using Common.Data;
 
 Console.WriteLine("[PUBLISHER]");
 
 var publisher = new Publisher();
-var connected = publisher.StartConnect("127.0.0.1", 8);
-
+var connected = publisher.StartConnect(CommonConstants.BROKER_IP, CommonConstants.BROKER_PORT);
 if (!connected) return;
 
 int nrOfBytes = 0;
 string msgInJson = string.Empty;
-Payload payload = new Payload();
+Payload payload = new();
 while (true)
 {
     Console.Write("Enter topic: ");

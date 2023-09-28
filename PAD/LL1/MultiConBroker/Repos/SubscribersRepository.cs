@@ -38,4 +38,12 @@ public class SubscribersRepository
 
         return foundSubscribers;
     }
+
+    public static List<Subscriber> GetAllSubscribers()
+    {
+        lock(locker)
+        {
+            return subscribers;
+        }
+    }
 }

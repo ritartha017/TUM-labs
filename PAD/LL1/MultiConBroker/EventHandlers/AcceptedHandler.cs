@@ -2,12 +2,12 @@
 
 namespace MultiConBroker;
 
-class PublisherAcceptedEventHandler : EventArgs
+class AcceptedHandler : EventArgs
 {
     public Socket Accepted { get; private set; }
 
-    public PublisherAcceptedEventHandler(Socket s)
+    public AcceptedHandler(Socket socket)
     {
-        Accepted = s;
+        Accepted = socket;
     }
 }
