@@ -1,4 +1,6 @@
-﻿namespace MultiConBroker;
+﻿using MultiConBroker.Models;
+
+namespace MultiConBroker;
 
 public class SubscribersRepository
 {
@@ -24,6 +26,7 @@ public class SubscribersRepository
         lock(locker)
         {
             subscribers.RemoveAll(x => x.Address == address);
+            Console.WriteLine("REMOVED");
         }
     }
 

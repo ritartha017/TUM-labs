@@ -5,8 +5,8 @@ namespace MultiConBroker;
 
 public class Publisher
 {
-	public IPEndPoint? EndPoint { get; private set; }
-	private Socket publisherSocket;
+	public IPEndPoint? EndPoint;
+	public Socket publisherSocket;
 
 	public Publisher(Socket accepted)
 	{
@@ -16,34 +16,34 @@ public class Publisher
 
 	public void StartReceive()
 	{
-        publisherSocket.BeginReceive(new byte[] { 0 }, 0, 0, 0, ReceivedCallback, null);
-    }
+		publisherSocket.BeginReceive(new byte[] { 0 }, 0, 0, 0, ReceivedCallback, null);
+	}
 
     void ReceivedCallback(IAsyncResult ar)
     {
 		try
 		{
-            publisherSocket.EndReceive(ar, out SocketError response);
+            publisherSocket.EndReceive(ar);
 
-            if (response == SocketError.Success)
+			var buff = new byte[8192];
+			var rec = publisherSocket.Receive(buff, buff.Length, 0);
+
+			if (rec < buff.Length)
+				Array.Resize<byte>(ref buff, rec);
+			if (buff.Length <= 0)
 			{
-				var buff = new byte[8192];
-				var rec = publisherSocket.Receive(buff, buff.Length, 0);
-
-				if (rec < buff.Length)
-					Array.Resize<byte>(ref buff, rec);
-                if (buff.Length == 0) return;
-
-                Received?.Invoke(this, new ReceivedHandler(this, buff));
-
-				publisherSocket.BeginReceive(new byte[] { 0 }, 0, 0, 0, ReceivedCallback, null);
+				Close();
+				return;
 			}
+
+            Received?.Invoke(this, new ReceivedHandler(this, buff));
+
+			publisherSocket.BeginReceive(new byte[] { 0 }, 0, 0, 0, ReceivedCallback, null);
 		}
 		catch (Exception ex)
 		{
 			Console.WriteLine(ex.ToString());
 			Close();
-            Disconnected?.Invoke(this, new DisconnectedHandler(this));
         }
     }
 
@@ -51,6 +51,7 @@ public class Publisher
 	{
 		publisherSocket.Close();
 		publisherSocket.Dispose();
+		Disconnected?.Invoke(this, new DisconnectedHandler(this));
 	}
 
     public event EventHandler<ReceivedHandler> Received;

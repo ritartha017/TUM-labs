@@ -2,7 +2,7 @@
 
 namespace MultiConBroker;
 
-class AcceptedHandler : EventArgs
+public class AcceptedHandler : EventArgs
 {
     public Socket Accepted { get; private set; }
 

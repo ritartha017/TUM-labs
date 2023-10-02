@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Text;
+﻿using System.Text;
 using MultiConSubscriber.EventHandlers;
 using MultiConSubscriber.Models;
 using Common.Data;
@@ -10,11 +9,9 @@ class Program
 {
     static Subscriber subscriber;
 
-    static void Main(string[] args)
+    static void Main()
     {
         Console.WriteLine("[SUBSCRIBER]");
-        //Console.Write("Enter topic: ");
-        //var topic = Console.ReadLine();
         subscriber = new Subscriber("coded2");
 
         subscriber.Connected += new EventHandler<ConnectedHandler>(Broker_Connected);
@@ -29,7 +26,7 @@ class Program
 
     private static void Broker_Connected(object? sender, ConnectedHandler e)
     {
-        Broker b = new Broker(e.Socket);
+        Broker b = new(e.Socket);
         b.Received += new EventHandler<ReceivedHandler>(Received);
     }
 

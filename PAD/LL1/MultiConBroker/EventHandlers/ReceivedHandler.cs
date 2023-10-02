@@ -1,4 +1,9 @@
 ﻿using System.Text;
+using Common.Data;
+using MultiConBroker.Models;
+using MultiConBroker.Repos;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace MultiConBroker;
 
@@ -11,10 +16,9 @@ public class ReceivedHandler : EventArgs
     {
         Publisher = p;
         this.data = (byte[])data.Clone();
-        // Handle(data);
+        Handle(data);
     }
 
-    /*
     private void Handle(byte[] data)
     {
         var payloadString = Encoding.UTF8.GetString(data);
@@ -22,8 +26,8 @@ public class ReceivedHandler : EventArgs
         if (payloadString.StartsWith("subscribe#"))
         {
             var topic = payloadString.Split("subscribe#").LastOrDefault();
-            SubscribersRepository.Add(new Subscriber() { Topic = topic, Address = Publisher.EndPoint.Address.ToString() });
-            
+            var newSub = new Subscriber() { Topic = topic, Address = Publisher.EndPoint.Address.ToString() };
+            SubscribersRepository.Add(newSub);
         }
         else if (IsValidJson(payloadString))
         {
@@ -59,5 +63,5 @@ public class ReceivedHandler : EventArgs
         {
             return false;
         }
-    }*/
+    }
 }

@@ -7,7 +7,7 @@ static class PayloadQueue
 {
 	private static ConcurrentQueue<Payload> payloads;
 
-	static bool IsEmpty { get => payloads.IsEmpty; }
+	public static bool IsEmpty { get => payloads.IsEmpty; }
 
 	static PayloadQueue()
 	{

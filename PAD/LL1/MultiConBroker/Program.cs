@@ -8,12 +8,15 @@ class Program
 {
     static Broker broker;
 
-    static void Main(string[] args)
+    static void Main()
     {
         Console.WriteLine("[BROKER] started listenning..");
-        broker = new Broker(CommonConstants.BROKER_IP, CommonConstants.BROKER_PORT);
+        broker = new Broker(CommonConstants.BROKER_PORT);
         broker.SocketAccepted += new EventHandler<AcceptedHandler>(Broker_SocketAccepted);
         broker.Start();
+
+        // var worker = new MessagesSender();
+        // Task.Factory.StartNew(worker.SendMessages, TaskCreationOptions.LongRunning);
 
         Process.GetCurrentProcess().WaitForExit();
     }
