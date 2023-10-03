@@ -19,11 +19,9 @@ public class MessagesSender
                 if (paylaod != null)
                 {
                     var subscribers = SubscribersRepository.GetSubscribersByTopic(paylaod.Topic);
-
                     foreach (var subcriber in subscribers)
                     {
                         var payloadString = JsonConvert.SerializeObject(paylaod);
-                        Console.WriteLine(payloadString);
                         byte[] data = Encoding.UTF8.GetBytes(payloadString);
 
                         subcriber.Socket.Send(data);
@@ -32,9 +30,5 @@ public class MessagesSender
             }
             Thread.Sleep(TTSleep);
         }
-    }
-
-    public MessagesSender()
-    {
     }
 }

@@ -65,7 +65,6 @@ public class Subscriber
     public void Subscribe()
     {
         var message = Encoding.UTF8.GetBytes(CommonConstants.SubscribePrefix + this.topic);
-        Console.WriteLine("sent");
         try
         {
             socket.Send(message);

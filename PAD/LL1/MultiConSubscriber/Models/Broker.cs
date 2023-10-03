@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Net.Sockets;
+using Common.Data;
 using MultiConSubscriber.EventHandlers;
 
 namespace MultiConSubscriber.Models;
@@ -22,7 +23,7 @@ public class Broker
         {
             socket.EndReceive(ar, out SocketError response);
 
-            var buff = new byte[8192];
+            var buff = new byte[CommonConstants.RECEIVER_BUFF_SIZE];
             var rec = socket.Receive(buff, buff.Length, 0);
 
             if (rec < buff.Length)
@@ -52,4 +53,3 @@ public class Broker
 
     public event EventHandler<ReceivedHandler> Received;
 }
-

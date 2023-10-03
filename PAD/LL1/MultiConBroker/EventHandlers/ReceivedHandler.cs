@@ -1,13 +1,15 @@
-﻿namespace MultiConBroker;
+﻿using System.Net.Sockets;
+
+namespace MultiConBroker;
 
 public class ReceivedHandler : EventArgs
 {
-    public Publisher Publisher { get; private set; }
-    public byte[] data { get; private set; }
+    public Socket ReceivedSocket { get; private set; }
+    public byte[] Data { get; private set; }
 
-    public ReceivedHandler(Publisher p, byte[] data)
+    public ReceivedHandler(Socket socket, byte[] data)
     {
-        Publisher = p;
-        this.data = (byte[])data.Clone();
+        this.ReceivedSocket = socket;
+        this.Data = (byte[])data.Clone();
     }
 }

@@ -9,8 +9,4 @@ public class Subscriber
 	public string Address { get; set; }
 
 	public Socket Socket { get; set; }
-
-	public Subscriber()
-	{
-	}
 }

@@ -3,18 +3,20 @@ using System.Net.Sockets;
 
 namespace MultiConBroker;
 
-class Broker
+public class Broker
 {
     Socket socket;
+
     private readonly int CONNS_LIMIT = 10;
 
     public bool Listening { get; private set;  }
+
     public int Port { get; private set; }
 
     public Broker(int port)
     {
-        Port = port;
-        socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        this.Port = port;
+        this.socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
     }
 
     public void Start()
@@ -42,8 +44,8 @@ class Broker
     {
         try
         {
-            Socket s = this.socket.EndAccept(ar);
-            SocketAccepted?.Invoke(this, new AcceptedHandler(s));
+            Socket acceptedSocket = this.socket.EndAccept(ar);
+            SocketAccepted?.Invoke(this, new AcceptedHandler(acceptedSocket));
             this.socket.BeginAccept(AcceptedCallback, null);
         }
         catch (Exception ex)

@@ -1,11 +1,13 @@
-﻿namespace MultiConBroker;
+﻿using System.Net.Sockets;
+
+namespace MultiConBroker;
 
 public class DisconnectedHandler : EventArgs
 {
-    public Publisher Publisher { get; private set; }
+    public Socket DisconnectedSocket { get; private set; }
 
-    public DisconnectedHandler(Publisher publisher)
+    public DisconnectedHandler(Socket socket)
     {
-        Publisher = publisher;
+        this.DisconnectedSocket = socket;
     }
 }
