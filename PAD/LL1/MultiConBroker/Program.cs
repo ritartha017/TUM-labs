@@ -18,8 +18,8 @@ class Program
         broker.Start();
 
         var worker = new MessagesSender();
-        //Task.Factory.StartNew(worker.SendMessages, TaskCreationOptions.LongRunning);
-        Task.Run(worker.SendMessages);
+        Task.Factory.StartNew(worker.SendMessages, TaskCreationOptions.LongRunning);
+
         Process.GetCurrentProcess().WaitForExit();
     }
 
@@ -42,9 +42,9 @@ class Program
         var payloadString = Encoding.UTF8.GetString(e.data, 0, e.data.Length);
         Console.WriteLine($"{e.Publisher.EndPoint}: { payloadString }");
 
-        if (payloadString.StartsWith("subscribe#"))
+        if (payloadString.StartsWith(CommonConstants.SubscribePrefix))
         {
-            var topic = payloadString.Split("subscribe#").LastOrDefault();
+            var topic = payloadString.Split(CommonConstants.SubscribePrefix).LastOrDefault();
             SubscribersRepository.Add(new Subscriber() { Topic = topic, Address = e.Publisher.EndPoint.Address.ToString(), Socket = e.Publisher.publisherSocket });
 
         }

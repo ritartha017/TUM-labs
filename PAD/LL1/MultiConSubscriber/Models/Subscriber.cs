@@ -26,7 +26,7 @@ public class Subscriber
         {
             Console.WriteLine("Start connect to server...");
             var endPoint = new IPEndPoint(IPAddress.Parse(ipAddress), port);
-            IAsyncResult asyncResult = this.socket.BeginConnect(endPoint, ConnectCallback, socket);
+            IAsyncResult asyncResult = this.socket.BeginConnect(endPoint, ConnectedCallback, socket);
             bool flag = asyncResult.AsyncWaitHandle.WaitOne(connectionTimeOutms, true);
             if (!flag) throw new TimeoutException("The waiting was too long.");
             socketState = SocketState.Connecting;
@@ -40,7 +40,7 @@ public class Subscriber
         return false;
     }
 
-    void ConnectCallback(IAsyncResult asyncResult)
+    void ConnectedCallback(IAsyncResult asyncResult)
     {
         try
         {
@@ -50,6 +50,7 @@ public class Subscriber
             {
                 socketState = SocketState.Connected;
                 Console.WriteLine("Subscriber is connected to broker...");
+                Connected?.Invoke(this, new ConnectedHandler(socket));
                 return;
             }
             Console.WriteLine("Failed to connect to broker...");
@@ -63,7 +64,7 @@ public class Subscriber
 
     public void Subscribe()
     {
-        var message = Encoding.UTF8.GetBytes("subscribe#" + "hardcoded");
+        var message = Encoding.UTF8.GetBytes(CommonConstants.SubscribePrefix + this.topic);
         Console.WriteLine("sent");
         try
         {
@@ -95,6 +96,5 @@ public class Subscriber
     }
 
     public event EventHandler<ConnectedHandler> Connected;
-    public event EventHandler<SubscribedHandler> Subscribed;
     public event EventHandler<ReceivedHandler> Received;
 }

@@ -33,9 +33,6 @@ class Broker
         if (!Listening)
             return;
 
-        var address = socket.RemoteEndPoint.ToString();
-        SubscribersRepository.Remove(address);
-
         socket.Close();
         socket.Dispose();
         socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);

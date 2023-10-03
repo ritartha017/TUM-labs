@@ -22,23 +22,24 @@ public class Broker
         {
             socket.EndReceive(ar, out SocketError response);
 
-            if (response == SocketError.Success)
+            var buff = new byte[8192];
+            var rec = socket.Receive(buff, buff.Length, 0);
+
+            if (rec < buff.Length)
+                Array.Resize<byte>(ref buff, rec);
+            if (buff.Length <= 0)
             {
-                var buff = new byte[8192];
-                var rec = socket.Receive(buff, buff.Length, 0);
-
-                if (rec < buff.Length)
-                    Array.Resize<byte>(ref buff, rec);
-                if (buff.Length == 0) return;
-
-                Received?.Invoke(this, new ReceivedHandler(buff));
-
-                socket.BeginReceive(new byte[] { 0 }, 0, 0, 0, ReceivedCallback, null);
+                Close();
+                return;
             }
+
+            Received?.Invoke(this, new ReceivedHandler(buff));
+
+            socket.BeginReceive(new byte[] { 0 }, 0, 0, 0, ReceivedCallback, null);
         }
         catch (Exception ex)
         {
-            Console.WriteLine(ex.Message);
+            Console.WriteLine(ex.ToString());
             Close();
         }
     }

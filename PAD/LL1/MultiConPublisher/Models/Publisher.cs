@@ -16,7 +16,7 @@ public class Publisher
         socketState = SocketState.Disconnected;
     }
 
-    public bool StartConnect(string ipAddress = "192.168.1.10", int port = 1000)
+    public bool StartConnect(string ipAddress, int port)
     {
         try
         {

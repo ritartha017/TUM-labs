@@ -1,4 +1,6 @@
-﻿namespace MultiConSubscriber.EventHandlers;
+﻿using System.Net.Sockets;
+
+namespace MultiConSubscriber.EventHandlers;
 
 public class ReceivedHandler : EventArgs
 {

@@ -49,8 +49,10 @@ public class Publisher
 
 	public void Close()
 	{
-		Console.WriteLine("closed");
-		publisherSocket.Close();
+        var address = publisherSocket.RemoteEndPoint.ToString();
+        SubscribersRepository.Remove(address);
+
+        publisherSocket.Close();
 		publisherSocket.Dispose();
         Disconnected?.Invoke(this, new DisconnectedHandler(this));
     }

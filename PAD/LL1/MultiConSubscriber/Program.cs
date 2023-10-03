@@ -12,14 +12,15 @@ class Program
     static void Main()
     {
         Console.WriteLine("[SUBSCRIBER]");
-        //Console.Write("Enter topic: ");
-        //var topic = Console.ReadLine();
-        subscriber = new Subscriber("coded2");
+        Console.Write("Enter topic: ");
+        var topic = Console.ReadLine();
+        subscriber = new Subscriber(topic);
 
         subscriber.Connected += new EventHandler<ConnectedHandler>(Broker_Connected);
 
         var connected = subscriber.StartConnect(CommonConstants.BROKER_IP, CommonConstants.BROKER_PORT);
         if (!connected) return;
+
         Thread.Sleep(10);
         subscriber.Subscribe();
 
