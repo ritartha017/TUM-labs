@@ -10,6 +10,10 @@ public class Client
 	public Client(Socket accepted)
 	{
 		this.socket = accepted;
+    }
+
+    public void StartReceive()
+    {
         this.socket.BeginReceive(new byte[] { 0 }, 0, 0, 0, ReceivedCallback, null);
     }
 

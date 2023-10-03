@@ -30,6 +30,7 @@ class Program
         Client socket = new(e.AcceptedSocket);
         socket.Received += new EventHandler<ReceivedHandler>(Broker_ClientReceived);
         socket.Disconnected += new EventHandler<DisconnectedHandler>(Broker_ClientDisconnected);
+        socket.StartReceive();
     }
 
     private static void Broker_ClientReceived(object? publisher, ReceivedHandler e)
