@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Text;
+﻿using System.Text;
 using MultiConSubscriber.EventHandlers;
 using MultiConSubscriber.Models;
 using Common.Data;
@@ -10,7 +9,7 @@ class Program
 {
     static Subscriber subscriber;
 
-    static void Main(string[] args)
+    static void Main()
     {
         Console.WriteLine("[SUBSCRIBER]");
         //Console.Write("Enter topic: ");

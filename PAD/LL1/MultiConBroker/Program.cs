@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Text;
 using Common.Data;
+using MultiConBroker.Repos;
+using Newtonsoft.Json;
 
 namespace MultiConBroker;
 
@@ -11,10 +13,13 @@ class Program
     static void Main(string[] args)
     {
         Console.WriteLine("[BROKER] started listenning..");
-        broker = new Broker(CommonConstants.BROKER_IP, CommonConstants.BROKER_PORT);
+        broker = new Broker(CommonConstants.BROKER_PORT);
         broker.SocketAccepted += new EventHandler<AcceptedHandler>(Broker_SocketAccepted);
         broker.Start();
 
+        var worker = new MessagesSender();
+        //Task.Factory.StartNew(worker.SendMessages, TaskCreationOptions.LongRunning);
+        Task.Run(worker.SendMessages);
         Process.GetCurrentProcess().WaitForExit();
     }
 
@@ -34,6 +39,19 @@ class Program
 
     private static void PublisherReceived(object? publisher, ReceivedHandler e)
     {
-        Console.WriteLine($"{e.Publisher.EndPoint}: { Encoding.UTF8.GetString(e.data, 0, e.data.Length)}");
+        var payloadString = Encoding.UTF8.GetString(e.data, 0, e.data.Length);
+        Console.WriteLine($"{e.Publisher.EndPoint}: { payloadString }");
+
+        if (payloadString.StartsWith("subscribe#"))
+        {
+            var topic = payloadString.Split("subscribe#").LastOrDefault();
+            SubscribersRepository.Add(new Subscriber() { Topic = topic, Address = e.Publisher.EndPoint.Address.ToString(), Socket = e.Publisher.publisherSocket });
+
+        }
+        else if (JsonHelper.IsValidJson(payloadString))
+        {
+            Payload? payload = JsonConvert.DeserializeObject<Payload>(payloadString);
+            PayloadQueue.Add(payload);
+        }
     }
 }

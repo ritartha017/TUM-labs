@@ -1,11 +1,11 @@
 ﻿namespace MultiConBroker;
 
-public class SubscribersRepository
+public static class SubscribersRepository
 {
     private static object locker;
     private static List<Subscriber> subscribers;
 
-    public SubscribersRepository()
+    static SubscribersRepository()
 	{
         subscribers = new();
         locker = new();
@@ -13,7 +13,7 @@ public class SubscribersRepository
 
     public static void Add(Subscriber subscriber)
     {
-        lock(locker)
+        lock (locker)
         {
             subscribers.Add(subscriber);
         }
@@ -21,7 +21,7 @@ public class SubscribersRepository
 
     public static void Remove(string address)
     {
-        lock(locker)
+        lock (locker)
         {
             subscribers.RemoveAll(x => x.Address == address);
         }
@@ -31,9 +31,9 @@ public class SubscribersRepository
     {
         List<Subscriber> foundSubscribers = new();
 
-        lock(locker)
+        lock (locker)
         {
-            subscribers = subscribers.Where(x => x.Topic == topic).ToList();
+            foundSubscribers = subscribers.Where(x => x.Topic.ToLower() == topic.ToLower()).ToList();
         }
 
         return foundSubscribers;
@@ -41,9 +41,13 @@ public class SubscribersRepository
 
     public static List<Subscriber> GetAllSubscribers()
     {
-        lock(locker)
+        List<Subscriber> foundSubscribers = new();
+
+        lock (locker)
         {
-            return subscribers;
+            foundSubscribers = subscribers.Where(x => x.Topic != null).ToList();
         }
+
+        return foundSubscribers;
     }
 }

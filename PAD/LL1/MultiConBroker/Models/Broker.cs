@@ -10,11 +10,9 @@ class Broker
 
     public bool Listening { get; private set;  }
     public int Port { get; private set; }
-    public string Host { get; private set; }
 
-    public Broker(string host, int port)
+    public Broker(int port)
     {
-        Host = host;
         Port = port;
         socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
     }
@@ -23,6 +21,7 @@ class Broker
     {
         if (Listening)
             return;
+
         socket.Bind(new IPEndPoint(0, Port));
         socket.Listen(CONNS_LIMIT);
         socket.BeginAccept(AcceptedCallback, null);
@@ -33,6 +32,10 @@ class Broker
     {
         if (!Listening)
             return;
+
+        var address = socket.RemoteEndPoint.ToString();
+        SubscribersRepository.Remove(address);
+
         socket.Close();
         socket.Dispose();
         socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
