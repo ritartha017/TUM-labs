@@ -8,7 +8,7 @@ public class Program
 
         rsa.SetPublicPrivateKeys();
         
-        string message = "KALOED";
+        string message = "TEST";
         Console.WriteLine($"Message to encrypt: {message}");
         
         var encryptedMessageList = rsa.Encrypt(message);
