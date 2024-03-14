@@ -5,14 +5,21 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{0F765B89-1B5C-4410-AA49-E59A9C0B38E8}"
 	ProjectSection(SolutionItems) = preProject
-		testSP.sql = testSP.sql
+		Roles.sql = Roles.sql
+		UserRolesMapping.sql = UserRolesMapping.sql
+		Users.sql = Users.sql
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "News.Web", "News.Web\News.Web.csproj", "{4BB41CFA-37EE-495E-AEF9-16F32F1A7543}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News.DAL", "News.DAL\News.DAL.csproj", "{968342B4-64EB-48A8-A4CE-63F18E15DC91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "News.DAL", "News.DAL\News.DAL.csproj", "{968342B4-64EB-48A8-A4CE-63F18E15DC91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "News.BL", "News.BL\News.BL.csproj", "{B2B7E41C-D60E-4624-8584-BD2801EC0990}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "News.BL", "News.BL\News.BL.csproj", "{B2B7E41C-D60E-4624-8584-BD2801EC0990}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataScripts", "DataScripts", "{C4EBB5C5-1B79-4AD9-A346-D23780A2F318}"
+	ProjectSection(SolutionItems) = preProject
+		UsersDataScript.sql = UsersDataScript.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

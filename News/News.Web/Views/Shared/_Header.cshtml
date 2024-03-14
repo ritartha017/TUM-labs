@@ -7,28 +7,33 @@
             </form>
         </div>
         <div class="col-3 site-logo">
-            <a href="index.html" class="text-black h2 mb-0">Mini Blog</a>
+            <a href="@Url.Action("Index", "Home")" class="text-black h2 mb-0">PanoramaMD</a>
         </div>
         <div class="col-6 text-right">
             <nav class="site-navigation" role="navigation" style="margin: 0 auto;">
                 <ul class="site-menu js-clone-nav mr-auto d-none mb-0 p-0 d-lg-flex justify-content-center" style="row-gap: 20px;flex-wrap: wrap;">
-                    <li><a href="category.html">Home</a></li>
-                    <li><a href="category.html">Politics</a></li>
-                    <li><a href="category.html">Tech</a></li>
-                    <li><a href="category.html">Entertainment</a></li>
-                    <li><a href="category.html">Travel</a></li>
-                    <li><a href="category.html">Sports</a></li>
+                    <li><a href="@Url.Action("Index", "Home")">Principală</a></li>
+                    <li><a href="category.html">Politică</a></li>
+                    <li><a href="category.html">Tehnologii</a></li>
+                    <li><a href="category.html">Divertisment</a></li>
+                    <li><a href="category.html">Sport</a></li>
                 </ul>
             </nav>
             <a href="#" class="site-menu-toggle js-menu-toggle text-black d-inline-block d-lg-none"><span class="icon-menu h3"></span></a>
         </div>
         <div class="col-3">
-            <nav class="site-navigation" role="navigation" style="
-            margin: 0 auto;
-            ">
+            <nav class="site-navigation" role="navigation" style="margin: 0 auto;">
                 <ul class="site-menu js-clone-nav mr-auto d-none d-lg-flex mb-0 p-0 justify-content-end">
-                    <li><a href="category.html">Login</a></li>
-                    <li><a href="category.html">Sign Up</a></li>
+                    @if (!string.IsNullOrEmpty(ViewData["FirstName"] as string))
+                    {
+                        <li>Bine ai venit, <a>@ViewData["FirstName"]!</a></li>
+                        <li><a href="@Url.Action("Logout", "Authorization")">Delogare</a></li>
+                    }
+                    else
+                    {
+                    <li><a href="@Url.Action("Login", "Authorization")">Autorizare</a></li>
+                    <li><a href="@Url.Action("Register", "Authorization")">Înregistrare</a></li>
+                    }
                     <li class="d-none d-lg-inline-block"><a href="#" class="js-search-toggle"><span class="icon-search"></span></a></li>
                 </ul>
             </nav>

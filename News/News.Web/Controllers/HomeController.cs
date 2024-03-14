@@ -4,7 +4,10 @@ using System.Diagnostics;
 
 using Microsoft.AspNetCore.Mvc;
 
+using News.DAL.Models;
 using News.Web.Models;
+
+using Newtonsoft.Json;
 
 public class HomeController : Controller
 {
@@ -17,10 +20,17 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        var articles = new List<Article>();
+        var articles = new List<ArticleViewModel>();
         for (int i = 0; i < 6; i++)
         {
-            articles.Add(new Article { Content = $"Article{i + 1}", PublishedDate = DateTime.Now, });
+            articles.Add(new ArticleViewModel { Content = $"Article{i + 1}", PublishedDate = DateTime.Now, });
+        }
+
+        var userDataJson = HttpContext.Session.GetString("UserData");
+        if (!string.IsNullOrEmpty(userDataJson))
+        {
+            var user = JsonConvert.DeserializeObject<User>(userDataJson);
+            ViewData["FirstName"] = user.FirstName;
         }
         return View(articles);
     }
