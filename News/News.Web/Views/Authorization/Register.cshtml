@@ -1,0 +1,37 @@
+﻿@model News.DAL.Models.User;
+
+@if (Model == null)
+{
+    <div class="site-section d-flex justify-content-center align-items-center">
+        <div class="container" style="width:500px;">
+            <form method="post">
+                <div class="form-outline mb-4">
+                    <input name="FirstName" class="form-control" />
+                    <label class="form-label">Prenume</label>
+                </div>
+                <div class="form-outline mb-4">
+                    <input name="LastName" class="form-control" />
+                    <label class="form-label">Nume</label>
+                </div>
+                <div class="form-outline mb-4">
+                    <input name="email" class="form-control" />
+                    <label class="form-label">Email</label>
+                </div>
+                <div class="form-outline mb-4">
+                    <input name="Password" type="password" class="form-control" />
+                    <label class="form-label">Parola</label>
+                </div>
+
+                <button class="btn btn-primary btn-block mb-4">Înregistrare</button>
+
+                <div class="text-center">
+                    <p><a href="#!">Logare</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+else
+{
+    @Url.Action("Index", "Home")
+}
